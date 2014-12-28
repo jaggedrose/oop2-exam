@@ -3,12 +3,12 @@
 class Player extends Base {
 
 	public $name;
-	protected $success = 50;
+	public $success = 50;
 
-	protected $hand_stitching;
-	protected $sewing;
-	protected $cutting;
-	protected $patterns;
+	public $hand_stitching;
+	public $sewing;
+	public $cutting;
+	public $patterns;
 
 	public function __construct($name) {
     	$this->name = $name;
