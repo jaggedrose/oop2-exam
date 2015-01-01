@@ -39,16 +39,16 @@ if(isset($ds->story)) {
 
 
 
-$ds->companionPlayers = array("Coco","Vivienne","Tom","Marc");
+// $ds->companionPlayers = array("Coco","Vivienne","Tom","Marc");
 
-$unusedNames = array_diff($ds->companionPlayers,$ds->usedNames);
+// $unusedNames = array_diff($ds->companionPlayers,$ds->usedNames);
 
-if(count($ds->usedNames)>0){
-  echo('<p>Your companion players:</p>'
-    .implode('<br>',$ds->usedNames).'<hr>');
-}
+// if(count($ds->usedNames)>0){
+//   echo('<p>Your companion players:</p>'
+//     .implode('<br>',$ds->usedNames).'<hr>');
+// }
 
-$newName = $unusedNames[array_rand($unusedNames)];
-$ds->players[$newName] = new Player($newName);
-$ds->usedNames[] = $newName;
-echo('<p>Created player: '.$newName.'!</p>');
+// $newName = $unusedNames[array_rand($unusedNames)];
+// $ds->players[$newName] = new Player($newName);
+// $ds->usedNames[] = $newName;
+// echo('<p>Created player: '.$newName.'!</p>');
