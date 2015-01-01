@@ -10,8 +10,18 @@ include_once("nodebite-swiss-army-oop.php");
 //   "prefix" => "exam_game"
 // ));
 
+// JSON data example from main.js
+// data: {
+// 			// game_id : 0,
+// 			// create_player: {
+// 			//   "class" : "Aria",
+// 			//   "name" : "aName"
+// 			player_name : chosenName,
+// 			player_class : chosenClass
+// 			},
 
-if (!isset($_REQUEST["player_name"])) {
+
+if (!isset($_REQUEST["player_name"]) || !isset($_REQUEST["player_class"])) {
   //if not enough request data was recieved, exit script
   echo(json_encode(false));
   exit();
@@ -19,6 +29,8 @@ if (!isset($_REQUEST["player_name"])) {
 else {
   //else store data in variables
   $player_name = $_REQUEST["player_name"];
-  echo(json_encode($player_name));
+  $player_class = $_REQUEST["player_class"];
+  // echo(json_encode($player_class));
 }
+
 

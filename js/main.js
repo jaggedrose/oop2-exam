@@ -5,14 +5,25 @@ $(function() {
 		var form = $(this);
 		var pName = form.find('#playerName').val();
 
-		submitPlayerName(pName);
+		var selectedClass;
+
+		if ($("input[name='playerClass']:checked").length > 0){
+			selectedClass = $('input:radio[name=playerClass]:checked').val();
+			console.log(selectedClass);
+		}
+		else {
+			alert("You must select a class!");
+			return false;
+		}
+
+		submitPlayerName(pName, selectedClass);
 
 		// Do not reload the page
 		return false;
 	});
 
 	
-	function submitPlayerName(pName) {
+	function submitPlayerName(chosenName, chosenClass) {
 		$.ajax({
 			url: "player_choice.php",
 			dataType: "json",
@@ -21,16 +32,18 @@ $(function() {
 			// create_player: {
 			//   "class" : "Aria",
 			//   "name" : "aName"
-			player_name : pName
+			player_name : chosenName,
+			player_class : chosenClass
 			},
 			success: function(data) {
 				console.log("Success: ", data);
 			},
 			error: function(data) {
-				console.log("startNewGame error: ", data.responseText);
+				console.log("startNewGame error: ", data);
 			}
 		});
 	}
+
 
 
 
