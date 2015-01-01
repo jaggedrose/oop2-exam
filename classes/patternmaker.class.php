@@ -1,6 +1,6 @@
 <?php
 
-class Pattern-Maker extends Player {
+class Patternmaker extends Player {
 	
 	public $hand_stitching = 20;
 	public $sewing = 60;
