@@ -10,7 +10,3 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-
-if(!isset($ds->player)) {
-	$ds->player = array();
-}

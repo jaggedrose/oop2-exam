@@ -29,7 +29,6 @@ else {
   // echo(json_encode($player_class));
 }
 
-$player;
 
 if (strcmp($player_class, "Tailor") === 0) {
 	$player = new Tailor($player_name);
@@ -52,6 +51,5 @@ else {
   $player = &$ds->player[0];
 }
 
-var_dump($player);
 
-echo(json_encode(false));
+echo(json_encode($player));
