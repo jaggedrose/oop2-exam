@@ -1,15 +1,5 @@
 <?php
 
-include_once("nodebite-swiss-army-oop.php");
-
-$ds = new DBObjectSaver(array(
-  "host" => "127.0.0.1",
-  "dbname" => "wu14oop2",
-  "username" => "root",
-  "password" => "mysql",
-  "prefix" => "exam_game"
-));
-
 // JSON data example from main.js
 //  data: {
 //    player_name : chosenName,
@@ -29,27 +19,37 @@ else {
   // echo(json_encode($player_class));
 }
 
+// Start new game
+include_once("nodebite-swiss-army-oop.php");
 
-if (strcmp($player_class, "Tailor") === 0) {
-	$player = new Tailor($player_name);
-}
-elseif (strcmp($player_class, "Dressmaker") === 0) {
-	$player = new Dressmaker($player_name);
-}
-else {
-	$player = new Patternmaker($player_name);
-}
+$ds = new DBObjectSaver(array(
+  "host" => "127.0.0.1",
+  "dbname" => "wu14oop2",
+  "username" => "root",
+  "password" => "mysql",
+  "prefix" => "exam_game"
+));
+
+// Empty components
+unset($ds->player);
+
+// "Alias" variable for properties
+$player = &$ds->player;
+
+
+// Create new player with chosen player class
+$new_player = new $player_class($player_name);
 
 // Check if we have any players in the DB already
-if (!count($ds->player)) {
+if (!count($player)) {
   //start tracking player instance
-  $ds->player[] = $player;
+  $player[] = $new_player;
 }
 //or if we did load any players from the DB
 else {
-  //store a reference to $ds->players[0] in the variable $player_name
+  //store a reference to $ds->players[0] in the variable $player
   $player = &$ds->player[0];
 }
 
 
-echo(json_encode($player));
+echo(json_encode($new_player));
