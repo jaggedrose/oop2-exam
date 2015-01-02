@@ -18,14 +18,16 @@ $(function() {
 
 		$(".gameOptions").append("<h3>Choose a class for your player:</h3>");
 		// Player classes as radio buttons
-		$(".gameOptions").append('<input type="radio" name="playerClass" id="dressmakerClass" value="Dressmaker">');
-		$(".gameOptions").append('<input type="radio" name="playerClass" id="tailorClass" value="Tailor">');
-		$(".gameOptions").append('<input type="radio" name="playerClass" id="patternmakerClass" value="Patternmaker">');
+		$(".gameOptions").append('<input type="radio" name="playerClass" id="dressmakerClass" value="Dressmaker"><label for="Dressmaker">Dressmaker</label><br>');
+		$(".gameOptions").append('<input type="radio" name="playerClass" id="tailorClass" value="Tailor"><label for="Tailor">Tailor</label><br>');
+		$(".gameOptions").append('<input type="radio" name="playerClass" id="patternmakerClass" value="Patternmaker"><label for="Patternmaker">Pattern Maker</label><br>');
 
-		$('#addPlayer').submit(function() {
-			var form = $(this);
-			var pName = form.find('#playerName').val();
+		//Append start new game button
+		$(".gameOptions").append('<button class="startGame">Start new game!</button>');
 
+		// clickhandler for start new game button
+		$(".startGame").click(function() {
+			var pName = $("#playerName").val();
 			var pClass;
 
 			if ($("input[name='playerClass']:checked").length > 0){
@@ -68,6 +70,8 @@ $(function() {
 	}
 
 //	function startNewGame()
+
+	choosePlayerClass();
 
 
 
