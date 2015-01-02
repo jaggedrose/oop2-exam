@@ -5,18 +5,18 @@ $(function() {
 		var form = $(this);
 		var pName = form.find('#playerName').val();
 
-		var selectedClass;
+		var pClass;
 
 		if ($("input[name='playerClass']:checked").length > 0){
-			selectedClass = $('input:radio[name=playerClass]:checked').val();
-			console.log(selectedClass);
+			pClass = $('input:radio[name=playerClass]:checked').val();
+			console.log(pClass);
 		}
 		else {
 			alert("You must select a class!");
 			return false;
 		}
 
-		submitPlayerName(pName, selectedClass);
+		submitPlayerName(pName, pClass);
 
 		// Do not reload the page
 		return false;
@@ -36,13 +36,16 @@ $(function() {
 			player_class : chosenClass
 			},
 			success: function(data) {
+
 				console.log("Success: ", data);
 			},
 			error: function(data) {
-				console.log("startNewGame error: ", data);
+				console.log("Error: ", data);
 			}
 		});
 	}
+
+//	function startNewGame()
 
 
 
