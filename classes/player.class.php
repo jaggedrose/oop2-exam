@@ -12,7 +12,7 @@ class Player extends Base {
 
 	public function __construct($name) {
     	$this->name = $name;
-   }
+	}
 
 	public function get_name() {
 		return $this->name;
@@ -37,5 +37,12 @@ class Player extends Base {
 	public function get_patterns() {
 		return $this->patterns;
 	}
+
+   
+    // greet
+	public function greet() {
+		return "Hello ".$this->name. "! You are a ".$this->classtype;
+	}
+
 	
 }
