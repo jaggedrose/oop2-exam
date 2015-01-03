@@ -1,0 +1,34 @@
+[
+  {
+    "id" : 0,
+    "title" : "Make a skirt.",
+    "description" : "Your challenge is to make a simple A-line skirt, with a waistline & zipper",
+    "choices" : [
+      {
+        "choice_no" : 0,
+        "name" : "Change challenge",
+        "description" : "",
+        "actions" : []
+      },
+      {
+        "choice_no" : 1,
+        "name" : "Accept challenge",
+        "description" : "",
+        "actions" : [
+          {
+            "type" : "make",
+            "event" : {
+              "do" : "Skirt"
+            }
+          }
+        ]
+      }
+    ],
+    "rewards" : [
+      {
+        "for_choice_no" : 1,
+        "success" : 15,
+      }
+    ]
+  }
+]
