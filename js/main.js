@@ -10,9 +10,9 @@ $(function() {
 
 		// Player name input
 		$(".gameOptions").append("<h3>Player Name:</h3>");
-		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name">');
+		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name" required>');
 
-		// TODO Might need this later.......
+		// ToDo - Might need this later.......
 		//find out available characters for chosen storyline
 		// var availableCharacters = storyData.available_characters;
 
@@ -28,6 +28,7 @@ $(function() {
 		// clickhandler for start new game button
 		$(".startGame").click(function() {
 			var pName = $("#playerName").val();
+			// ToDo - Add alert msg that name must be entered!
 			var pClass;
 
 			if ($("input[name='playerClass']:checked").length > 0){
@@ -60,7 +61,7 @@ $(function() {
 			player_class : chosenClass
 			},
 			success: function(data) {
-
+				playGame();
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -69,11 +70,27 @@ $(function() {
 		});
 	}
 
-//	function startNewGame()
+	function playGame() {
+		$.ajax({
+			url: "start_game.php",
+			dataType: "json",
+			success: function(data) {
+				printChallengeData();
+				console.log("Success: ", data);
+			},
+			error: function(data) {
+				console.log("Error: ", data);
+			}
+		});
+	}
 
+	function printChallengeData() {
+		
+	}
+
+
+
+	// Call first function needed in chain here
 	choosePlayerClass();
-
-
-
 
 });
