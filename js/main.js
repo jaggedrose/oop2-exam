@@ -75,7 +75,7 @@ $(function() {
 			url: "start_game.php",
 			dataType: "json",
 			success: function(data) {
-				printChallengeData();
+				randomChallengeData();
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -84,13 +84,64 @@ $(function() {
 		});
 	}
 
-	function printChallengeData() {
-		
+	function randomChallengeData() {
+		// console.log("Challenge data: ", gameData);
+		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
+
+		$(".gameText").html('');
+		$(".gameOptions").html('');
+
+		$(".gameText").append("<h3>Player Info!</h3>");
+		$(".gameText").append("<p>ToDo - Text about each player - Your name & player class, possibly stats.</p>");
+		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
+
+		// ToDO - Append gameData $(".gameText").append("<h2>"+gameData.title+"</h2>");
+		$(".gameText").append("<h2>Random Challenge Title!</h2>");
+		// ToDo - Append gameData $(".gameText").append("<p>"+gameData.description+"</p>");
+		$(".gameText").append("<p>ToDo - Add a description of the challenge. Words words words Words words words Words words words Words words words Words words words Words words words. Words words words Words words words Words words words Words words!!!</p>");
+
+		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
+
+		//then print event options
+		// var eventOptions = eventData.options;
+		// for (var i = 0; i < eventOptions.length; i++) {
+
+		// ToDo - Connect btns to Json choices $('<button>'+eventOptions[i].name+'</button>');
+		var choice = $('<button>Json choice</button>');
+		// choice.data("choice", gameChoices[i]);
+		//then append choice buttons to DOM
+      $(".gameOptions").append(choice);
+		// }
+
+		//add choice clickHandler
+		// $(".gamOptions button").click(function() {
+			//get action data from button .data()
+			// var thisChoice = $(this).data("choice");
+
+			//then do the action! PHP file
+			// doChoice(thisChoice);
+		// });
+	}
+
+	function doChoice() {
+		$.ajax({
+			url: "do_choice.php",
+			dataType: "json",
+			success: function(data) {
+				randomChallengeData();
+				console.log("Success: ", data);
+			},
+			error: function(data) {
+				console.log("Error: ", data);
+			}
+		});
 	}
 
 
 
 	// Call first function needed in chain here
 	choosePlayerClass();
+	// ToDo - remove ths call, just for testing!!!
+	randomChallengeData();
 
 });
