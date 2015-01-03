@@ -75,7 +75,7 @@ $(function() {
 			url: "start_game.php",
 			dataType: "json",
 			success: function(data) {
-				randomChallengeData();
+				randomChallengeData(data);
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -84,7 +84,7 @@ $(function() {
 		});
 	}
 
-	function randomChallengeData() {
+	function randomChallengeData(gameData) {
 		// console.log("Challenge data: ", gameData);
 		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
 
@@ -92,35 +92,19 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<p>ToDo - Text about each player - Your name & player class, possibly stats.</p>");
+		$(".gameText").append("<p>Name: " + gameData["playerName"] + " class " + gameData["playerClass"] + "</p>");
 		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
-		// ToDO - Append gameData $(".gameText").append("<h2>"+gameData.title+"</h2>");
-		$(".gameText").append("<h2>Random Challenge Title!</h2>");
-		// ToDo - Append gameData $(".gameText").append("<p>"+gameData.description+"</p>");
-		$(".gameText").append("<p>ToDo - Add a description of the challenge. Words words words Words words words Words words words Words words words Words words words Words words words. Words words words Words words words Words words words Words words!!!</p>");
+		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
+		$(".gameText").append("<p>"+gameData["challenge"]["description"] +"</p>");
 
 		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
 
-		//then print event options
-		// var eventOptions = eventData.options;
-		// for (var i = 0; i < eventOptions.length; i++) {
-
-		// ToDo - Connect btns to Json choices $('<button>'+eventOptions[i].name+'</button>');
-		var choice = $('<button>Json choice</button>');
-		// choice.data("choice", gameChoices[i]);
-		//then append choice buttons to DOM
-      $(".gameOptions").append(choice);
-		// }
-
-		//add choice clickHandler
-		// $(".gamOptions button").click(function() {
-			//get action data from button .data()
-			// var thisChoice = $(this).data("choice");
-
-			//then do the action! PHP file
+		
+		// ToDo - Add 2 buttons for Accept & Change
+					//then do the action! PHP file
 			// doChoice(thisChoice);
-		// });
+		
 	}
 
 	function doChoice() {
@@ -142,6 +126,6 @@ $(function() {
 	// Call first function needed in chain here
 	choosePlayerClass();
 	// ToDo - remove ths call, just for testing!!!
-	randomChallengeData();
+	//randomChallengeData();
 
 });
