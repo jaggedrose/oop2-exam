@@ -14,6 +14,7 @@ class Player extends Base {
     	$this->name = $name;
 	}
 
+	// Getters & setters
 	public function get_name() {
 		return $this->name;
 	}
@@ -24,13 +25,6 @@ class Player extends Base {
 
 	public function get_needlework() {
 		return $this->needlework;
-	}
-
-	public function set_needlework($val) {
-		if ($val < 0 || $val > 100) {
-			throw new Exception("Skill level must be within 0 - 100");
-		}
-		$this->needlework = $val;
 	}
 
 	public function get_sewing() {
@@ -45,11 +39,44 @@ class Player extends Base {
 		return $this->patterns;
 	}
 
-   
-    // greet
-	public function greet() {
-		return "Hello ".$this->name. "! You are a ".$this->class;
+
+	public function set_success($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Success must be within 0 - 100");
+		}
+		$this->success = $val;
 	}
+
+	public function set_needlework($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Needlework skill must be within 0 - 100");
+		}
+		$this->needlework = $val;
+	}
+
+	public function set_sewing($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Sewing skill must be within 0 - 100");
+		}
+		$this->sewing = $val;
+	}
+
+	public function set_cutting($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Cutting skill must be within 0 - 100");
+		}
+		$this->cutting = $val;
+	}
+
+	public function set_patterns($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Patterns skill must be within 0 - 100");
+		}
+		$this->patterns = $val;
+	}
+
+   
+   
 
 
 	

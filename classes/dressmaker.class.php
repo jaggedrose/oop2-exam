@@ -2,10 +2,10 @@
 
 class Dressmaker extends Player {
 	
-	public $needlework = 70;
-	public $sewing = 90;
-	public $cutting = 50;
-	public $patterns = 20;
+	protected $needlework = 70;
+	protected $sewing = 90;
+	protected $cutting = 50;
+	protected $patterns = 20;
 
 	
 }

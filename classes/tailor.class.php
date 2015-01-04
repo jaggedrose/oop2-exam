@@ -2,9 +2,9 @@
 
 class Tailor extends Player {
 	
-	public $needlework = 80;
-	public $sewing = 70;
-	public $cutting = 90;
-	public $patterns = 60;
+	protected $needlework = 80;
+	protected $sewing = 70;
+	protected $cutting = 90;
+	protected $patterns = 60;
 
 }

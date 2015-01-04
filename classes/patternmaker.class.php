@@ -2,10 +2,10 @@
 
 class Patternmaker extends Player {
 	
-	public $needlework = 20;
-	public $sewing = 60;
-	public $cutting = 70;
-	public $patterns = 90;
+	protected $needlework = 20;
+	protected $sewing = 60;
+	protected $cutting = 70;
+	protected $patterns = 90;
 
 
 }
