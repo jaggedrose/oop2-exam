@@ -85,21 +85,24 @@ $(function() {
 	}
 
 	function randomChallengeData(gameData) {
-		// console.log("Challenge data: ", gameData);
 		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
 
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<p>Name: " + gameData["playerName"] + " class " + gameData["playerClass"] + "</p>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
 		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
+		$(".gameText").append("<h2>Your Challenge!</h2>");
 		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
 		$(".gameText").append("<p>"+gameData["challenge"]["description"] +"</p>");
-		// ToDo - Add skill title/headline <h4>??
-		$(".gameText").append("<p>Needlework: "+ gameData["challenge"]["skills"]["needlework"] +"</p>");
-		// ToDo - Do same for all 4 skills
+
+		$(".gameText").append("<h4>Skill levels for challenge:</h4>");
+		$(".gameText").append("<li>Needlework: "+ gameData["challenge"]["skills"]["needlework"] +"</li>");
+		$(".gameText").append("<li>Sewing: "+ gameData["challenge"]["skills"]["sewing"] +"</li>");
+		$(".gameText").append("<li>Cutting: "+ gameData["challenge"]["skills"]["cutting"] +"</li>");
+		$(".gameText").append("<li>Patterns: "+ gameData["challenge"]["skills"]["patterns"] +"</li>");
 
 		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
 
