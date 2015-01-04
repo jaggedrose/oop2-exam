@@ -106,11 +106,22 @@ $(function() {
 
 		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
 
+		$(".gameOptions").append('<button class="acceptChallengeBtn">Accept challenge!</button>');
+		$(".gameOptions").append('<button class="changeChallengeBtn">Change challenge!</button>');
+
+		$(".acceptChallengeBtn").click(function() {
+			doChoice();
+			// Do not reload the page
+			return false;
+		});
 		
-		// ToDo - Add 2 buttons for Accept & Change
-					//then do the action! PHP file
-			// doChoice(thisChoice);
-		
+		$(".changeChallengeBtn").click(function() {
+			playGame();
+			// Do not reload the page
+			return false;
+		});
+
+				
 	}
 
 	function doChoice() {
@@ -118,7 +129,7 @@ $(function() {
 			url: "do_choice.php",
 			dataType: "json",
 			success: function(data) {
-				randomChallengeData();
+				
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -131,7 +142,6 @@ $(function() {
 
 	// Call first function needed in chain here
 	choosePlayerClass();
-	// ToDo - remove ths call, just for testing!!!
-	//randomChallengeData();
+	
 
 });

@@ -5,6 +5,8 @@ class Player extends Base {
 	protected $name;
 	protected $success = 50;
 
+	protected $tools = array();
+
 	protected $needlework;
 	protected $sewing;
 	protected $cutting;
@@ -13,6 +15,37 @@ class Player extends Base {
 	public function __construct($name) {
     	$this->name = $name;
 	}
+
+	// Methods we will use
+	public function winTool($tool) {
+		if (count($this->tools) < 3) {
+			// push tool to players tools array
+			$this->tools[] = $tool;
+		}
+	}
+
+	public function looseTool() {
+		if (count($this->tools) > 0) {
+			array_splice($tool, 0, 1);    
+		}
+	}
+
+	public function acceptChallenge($challenge) {
+		return $this->name." accepts challenge: ".$challenge["title"];
+	}
+
+	public function changeChallenge() {
+
+	}
+
+	public function carryOutChallenge() {
+
+	}
+
+	public function carryOutChallengeWithCompanion() {
+
+	}
+
 
 	// Getters & setters
 	public function get_name() {

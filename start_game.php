@@ -45,16 +45,7 @@ $current_challenge = &$ds->challenge;
 
 $new_challenge = new Challenge($challenge);
 
-// Check if we have a challenge in the DB already
-// if (!count($current_challenge)) {
-//   //start tracking challenge instance
-//   $current_challenge[] = $new_challenge;
-// }
-// //or if we did load a challenge from the DB
-// else {
-//   //store a reference to $ds->challenge[0] in the variable $current_challenge
-//   $current_challenge = &$ds->challenge[0];
-// }
+$current_challenge[] = $new_challenge;
 
 $returnData = array (
 	"playerName" => &$playerName,
