@@ -26,6 +26,13 @@ class Player extends Base {
 		return $this->needlework;
 	}
 
+	public function set_needlework($val) {
+		if ($val < 0 || $val > 100) {
+			throw new Exception("Skill level must be within 0 - 100");
+		}
+		$this->needlework = $val;
+	}
+
 	public function get_sewing() {
 		return $this->sewing;
 	}
@@ -41,8 +48,9 @@ class Player extends Base {
    
     // greet
 	public function greet() {
-		return "Hello ".$this->name. "! You are a ".$this->classtype;
+		return "Hello ".$this->name. "! You are a ".$this->class;
 	}
+
 
 	
 }

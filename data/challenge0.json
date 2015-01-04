@@ -1,5 +1,12 @@
 {
   "id" : 0,
   "title" : "Make a skirt.",
-  "description" : "Your challenge is to make a simple A-line skirt, with a waistline & zipper"
+  "description" : "Your challenge is to make a simple A-line skirt, with a waistline & zipper",
+  "skills" : {		
+		"needlework" : 30,
+		"sewing" : 100,
+		"cutting" : 10,
+		"patterns" : 10		
+	}
+
 }

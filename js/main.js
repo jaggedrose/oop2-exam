@@ -97,6 +97,9 @@ $(function() {
 
 		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
 		$(".gameText").append("<p>"+gameData["challenge"]["description"] +"</p>");
+		// ToDo - Add skill title/headline <h4>??
+		$(".gameText").append("<p>Needlework: "+ gameData["challenge"]["skills"]["needlework"] +"</p>");
+		// ToDo - Do same for all 4 skills
 
 		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
 
