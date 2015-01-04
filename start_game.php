@@ -16,7 +16,7 @@ $player = &$ds->player[0];
 $playerName = $player->name;
 $playerClass = get_class($player);
 
-$randomChallengeNr = rand(0, 0);
+$randomChallengeNr = rand(0, 2);
 
 $challengeJsonPath = "./data/challenge" . $randomChallengeNr . ".json";
 
