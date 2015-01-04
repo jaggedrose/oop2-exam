@@ -10,12 +10,3 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Get player & challenge from DB
-$player = &$ds->player[0];
-$challenge = &$ds->challenge[0];
-
-$acceptedString = $player->acceptChallenge($challenge);
-
-echo(json_encode($acceptedString));
-
-

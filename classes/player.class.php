@@ -31,11 +31,11 @@ class Player extends Base {
 	}
 
 	public function acceptChallenge($challenge) {
-		return $this->name." accepts challenge: ".$challenge["title"];
+		return $this->name." accepts challenge: ".$challenge->title;
 	}
 
 	public function changeChallenge() {
-
+		return $this->name." changes challenge.";
 	}
 
 	public function carryOutChallenge() {

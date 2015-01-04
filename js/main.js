@@ -75,7 +75,7 @@ $(function() {
 			url: "start_game.php",
 			dataType: "json",
 			success: function(data) {
-				randomChallengeData(data);
+				printChallengeData(data);
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -84,7 +84,7 @@ $(function() {
 		});
 	}
 
-	function randomChallengeData(gameData) {
+	function printChallengeData(gameData) {
 		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
 
 		$(".gameText").html('');
@@ -120,8 +120,6 @@ $(function() {
 			// Do not reload the page
 			return false;
 		});
-
-				
 	}
 
 	function doChoice() {
@@ -129,7 +127,46 @@ $(function() {
 			url: "do_choice.php",
 			dataType: "json",
 			success: function(data) {
-				
+				challengeAccepted(data);
+				console.log("Success: ", data);
+			},
+			error: function(data) {
+				console.log("Error: ", data);
+			}
+		});
+	}
+
+	function challengeAccepted(acceptText) {
+		$(".gameText").html('');
+		$(".gameOptions").html('');
+
+		$(".gameText").append("<h3>Player Info!</h3>");
+		// $(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		// $(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
+
+		$(".gameText").append("<h4>" + acceptText + "</h4>");
+		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
+		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with companion!</button>');
+
+		$(".doChallengeBtn").click(function() {
+			playChallenge();
+			// Do not reload the page
+			return false;
+		});
+
+		$(".companionChallengeBtn").click(function() {
+			playChallenge();
+			// Do not reload the page
+			return false;
+		});
+	}
+
+	function playChallenge() {
+		$.ajax({
+			url: "play_challenge.php",
+			dataType: "json",
+			success: function(data) {
+				// challengeAccepted(data);
 				console.log("Success: ", data);
 			},
 			error: function(data) {
