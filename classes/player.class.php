@@ -38,8 +38,8 @@ class Player extends Base {
 		return $this->name." changes challenge.";
 	}
 
-	public function carryOutChallenge($challenge) {
-		return $this->name. "carries out the chosen challenge."
+	public function carryOutChallenge() {
+		return $this->name." carries out the chosen challenge.";
 	}
 
 	public function carryOutChallengeWithCompanion($challenge) {

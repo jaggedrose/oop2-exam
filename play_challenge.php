@@ -15,6 +15,8 @@ $player = &$ds->player[0];
 $player_name = $player->name;
 $challenge = &$ds->challenge[0];
 
+// Getting string in method carryOutChallenge from player.class.php
+$doing_challenge = $player->carryOutChallenge();
 // Counts the amount of times it takes to complete a challenge
 $challenge_counter = $challenge->playChallenge($player);
 
@@ -22,7 +24,9 @@ $challenge_counter = $challenge->playChallenge($player);
 $return_data = array (
 	"playerName" => &$player_name,
 	"challenge" => &$challenge,
+	"doingChallenge" =>&$doing_challenge,
 	"challengeCounter" => &$challenge_counter
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));
+

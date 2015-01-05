@@ -176,7 +176,8 @@ $(function() {
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
-		$(".gameText").append("<h4>" + gameData["challengeCounter"] + "</h4>");
+		$(".gameText").append("<h4> " + gameData["doingChallenge"] + "</h4>");
+		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["playerName"] + " has completed the challenge!</p>");
 	}
 
 
