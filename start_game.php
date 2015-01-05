@@ -13,44 +13,47 @@ $ds = new DBObjectSaver(array(
 // Get the first player from the database, 
 // we know that this is always the human player
 $player = &$ds->player[0];
-$playerName = $player->name;
-$playerClass = get_class($player);
+$player_name = $player->name;
+$player_class = get_class($player);
 
-$randomChallengeNr = rand(0, 2);
+$random_challenge_nr = rand(0, 2);
 
-$challengeJsonPath = "./data/challenge" . $randomChallengeNr . ".json";
+$challenge_json_path = "./data/challenge" . $random_challenge_nr . ".json";
 
 //try to get the challenge json
-$challengeData = file_get_contents($challengeJsonPath);
+$challenge_data = file_get_contents($challenge_json_path);
 
 //if we did not find our story file, exit script
-if (!$challengeData) {
+if (!$challenge_data) {
   echo("Challenge json not found! ".$game_data_path);
   exit();
 }
 
 //json_decode($json_data, true) turns json into associative arrays
-$challenge = json_decode($challengeData, true);
+$challenge = json_decode($challenge_data, true);
 
 if(!$challenge) {
 	echo("json_decode failed");
 	exit();
 }
 
-// Empty components
+// Empty challenge table in DB
 unset($ds->challenge);
 
-// "Alias" variable for properties
+// "Alias" variable
 $current_challenge = &$ds->challenge;
 
+// Create new challenge instance
 $new_challenge = new Challenge($challenge);
 
+//start tracking challenge instance
 $current_challenge[] = $new_challenge;
 
-$returnData = array (
+// Collect all data needed in an associative array
+$return_data = array (
 	"playerName" => &$playerName,
 	"playerClass" => &$playerClass,
 	"challenge" => &$challenge
 );
-
-echo(json_encode($returnData));
+// Takes array, encodes it to Json & sends it to Ajax
+echo(json_encode($return_data));

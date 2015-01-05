@@ -41,5 +41,6 @@ $new_player = new $player_class($player_name);
 //start tracking player instance
 $player[] = $new_player;
 
+// ToDo - used for checking console.log, change to echo(json_encode(true));
 // Takes $new_player instance encodes it to Json, sends it to Ajax
 echo(json_encode($new_player));
