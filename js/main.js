@@ -10,7 +10,7 @@ $(function() {
 
 		// Player name input
 		$(".gameOptions").append("<h3>Player Name:</h3>");
-		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name" required>');
+		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name">');
 
 		// ToDo - Might need this later.......
 		//find out available characters for chosen storyline
@@ -31,12 +31,12 @@ $(function() {
 			// ToDo - Add alert msg that name must be entered!
 			var pClass;
 
-			if ($("input[name='playerClass']:checked").length > 0){
+			if ($("input[name='playerClass']:checked").length > 0 && pName.length > 0){
 				pClass = $('input:radio[name=playerClass]:checked').val();
 				console.log(pClass);
 			}
 			else {
-				alert("You must select a class!");
+				alert("You must enter a name & select a class!");
 				return false;
 			}
 
@@ -46,7 +46,6 @@ $(function() {
 			return false;
 		});
 	}
-
 	
 	function submitPlayerName(chosenName, chosenClass) {
 		$.ajax({
@@ -136,6 +135,7 @@ $(function() {
 		});
 	}
 
+	// Parameter acceptText is the data from function doChoice, which is the string written in the php file that I want to print here.
 	function challengeAccepted(acceptText) {
 		$(".gameText").html('');
 		$(".gameOptions").html('');
