@@ -15,5 +15,14 @@ $player = &$ds->player[0];
 $player_name = $player->name;
 $challenge = &$ds->challenge[0];
 
-// 
+// Counts the amount of times it takes to complete a challenge
 $challenge_counter = $challenge->playChallenge($player);
+
+// Collect all data needed in an associative array
+$return_data = array (
+	"playerName" => &$player_name,
+	"challenge" => &$challenge,
+	"challengeCounter" => &$challenge_counter
+);
+// Takes array, encodes it to Json & sends it to Ajax
+echo(json_encode($return_data));

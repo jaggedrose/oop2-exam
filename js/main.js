@@ -140,7 +140,8 @@ $(function() {
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
 		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
-		$(".gameText").append("<h4>" + gameData["accceptedString"] + "</h4>");
+		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
+
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
 		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with companion!</button>');
 
@@ -162,13 +163,20 @@ $(function() {
 			url: "play_challenge.php",
 			dataType: "json",
 			success: function(data) {
-				// challengeAccepted(data);
+				printActiveChallenge(data);
 				console.log("Success: ", data);
 			},
 			error: function(data) {
 				console.log("Error: ", data);
 			}
 		});
+	}
+
+	function printActiveChallenge(gameData) {
+		$(".gameText").html('');
+		$(".gameOptions").html('');
+
+		$(".gameText").append("<h4>" + gameData["challengeCounter"] + "</h4>");
 	}
 
 
