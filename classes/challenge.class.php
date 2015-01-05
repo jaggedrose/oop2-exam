@@ -21,6 +21,28 @@ class Challenge extends Base {
 		$this->patterns = $challenge["skills"]["patterns"];
 	}
    
+  	public function playChallenge($player) {
+  		$counter = 0;
+  		while (!$this->isComplete()) {
+  			$this->needlework -= $player->needlework;
+  			$this->sewing -= $player->sewing;
+  			$this->cutting -= $player->cutting;
+  			$this->patterns -= $player->patterns;
+  			$counter++;
+  		}
+  		return $counter;
+   }
+
+	private function isComplete() {
+		if ($this->needlework <= 0 && $this->sewing <= 0 && $this->cutting <= 0 && $this->patterns <= 0 ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+
+
+	}
 
 
 }

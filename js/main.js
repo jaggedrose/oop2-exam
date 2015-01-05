@@ -131,16 +131,16 @@ $(function() {
 		});
 	}
 
-	function challengeAccepted(acceptText) {
-		// Parameter acceptText is the data from function doChoice, which is the string written in the php file that I want to print here.
+	function challengeAccepted(gameData) {
+		// gameData is the same data from playGame success, just with a new name (it is the $return_data info)
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		// $(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		// $(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
-		$(".gameText").append("<h4>" + acceptText + "</h4>");
+		$(".gameText").append("<h4>" + gameData["accceptedString"] + "</h4>");
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
 		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with companion!</button>');
 

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Player extends Base {
 
@@ -38,11 +38,11 @@ class Player extends Base {
 		return $this->name." changes challenge.";
 	}
 
-	public function carryOutChallenge() {
+	public function carryOutChallenge($challenge) {
 
 	}
 
-	public function carryOutChallengeWithCompanion() {
+	public function carryOutChallengeWithCompanion($challenge) {
 
 	}
 

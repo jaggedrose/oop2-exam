@@ -10,3 +10,10 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
+// Get player & challenge from DB
+$player = &$ds->player[0];
+$player_name = $player->name;
+$challenge = &$ds->challenge[0];
+
+// 
+$challenge_counter = $challenge->playChallenge($player);

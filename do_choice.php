@@ -12,11 +12,22 @@ $ds = new DBObjectSaver(array(
 
 // Get player & challenge from DB
 $player = &$ds->player[0];
+$player_name = $player->name;
+$player_class = get_class($player);
 $challenge = &$ds->challenge[0];
 
-// calling string in method acceptChallenge from player.class.php
+// Getting string in method acceptChallenge from player.class.php
 $accepted_string = $player->acceptChallenge($challenge);
 
-echo(json_encode($accepted_string));
+// Collect all data needed in an associative array
+$return_data = array (
+	"playerName" => &$player_name,
+	"playerClass" => &$player_class,
+	"challenge" => &$challenge,
+	"accceptedString" => &$accepted_string
+);
+// Takes array, encodes it to Json & sends it to Ajax
+echo(json_encode($return_data));
+
 
 
