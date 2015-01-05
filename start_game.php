@@ -51,8 +51,8 @@ $current_challenge[] = $new_challenge;
 
 // Collect all data needed in an associative array
 $return_data = array (
-	"playerName" => &$playerName,
-	"playerClass" => &$playerClass,
+	"playerName" => &$player_name,
+	"playerClass" => &$player_class,
 	"challenge" => &$challenge
 );
 // Takes array, encodes it to Json & sends it to Ajax

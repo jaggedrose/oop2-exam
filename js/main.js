@@ -7,7 +7,6 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h2>Create your player!</h2>");
-
 		// Player name input
 		$(".gameOptions").append("<h3>Player Name:</h3>");
 		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name">');
@@ -30,7 +29,6 @@ $(function() {
 			var pName = $("#playerName").val();
 			// ToDo - Add alert msg that name must be entered!
 			var pClass;
-
 			if ($("input[name='playerClass']:checked").length > 0 && pName.length > 0){
 				pClass = $('input:radio[name=playerClass]:checked').val();
 				console.log(pClass);
@@ -39,9 +37,7 @@ $(function() {
 				alert("You must enter a name & select a class!");
 				return false;
 			}
-
 			submitPlayerName(pName, pClass);
-
 			// Do not reload the page
 			return false;
 		});
@@ -74,6 +70,7 @@ $(function() {
 			url: "start_game.php",
 			dataType: "json",
 			success: function(data) {
+				// Above (data) is the associative array $return_data echoed from PHP
 				printChallengeData(data);
 				console.log("Success: ", data);
 			},
@@ -84,8 +81,8 @@ $(function() {
 	}
 
 	function printChallengeData(gameData) {
+		// gameData is the same data from playGame success, just with a new name
 		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
-
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
@@ -104,7 +101,6 @@ $(function() {
 		$(".gameText").append("<li>Patterns: "+ gameData["challenge"]["skills"]["patterns"] +"</li>");
 
 		$(".gameOptions").append("<h2>Do you want to accept this challenge?</h2>");
-
 		$(".gameOptions").append('<button class="acceptChallengeBtn">Accept challenge!</button>');
 		$(".gameOptions").append('<button class="changeChallengeBtn">Change challenge!</button>');
 
@@ -135,8 +131,8 @@ $(function() {
 		});
 	}
 
-	// Parameter acceptText is the data from function doChoice, which is the string written in the php file that I want to print here.
 	function challengeAccepted(acceptText) {
+		// Parameter acceptText is the data from function doChoice, which is the string written in the php file that I want to print here.
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
@@ -179,6 +175,4 @@ $(function() {
 
 	// Call first function needed in chain here
 	choosePlayerClass();
-	
-
 });
