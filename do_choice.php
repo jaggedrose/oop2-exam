@@ -14,7 +14,8 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $challenge = &$ds->challenge[0];
 
-$accepted_string = $player->accept_challenge($challenge);
+// calling string in method acceptChallenge from player.class.php
+$accepted_string = $player->acceptChallenge($challenge);
 
 echo(json_encode($accepted_string));
 
