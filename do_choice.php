@@ -14,15 +14,21 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = get_class($player);
+$companions = &$ds->$companions;
 $challenge = &$ds->challenge[0];
+
+
 
 // Getting string in method acceptChallenge from player.class.php
 $accepted_string = $player->acceptChallenge($challenge);
+
+$player_success = $player->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
+	"companions" => &$companions,
 	"challenge" => &$challenge,
 	"playerSuccess" => &$player_success,
 	"acceptedString" => &$accepted_string

@@ -54,7 +54,7 @@ $companions[] = new $classes[1]("Christian");
 
 $return_data = array (
   "newPlayer" => &$new_player,
-  "companions" => &$companions,
+  "companions" => &$companions
 );
 
 // ToDo - used for checking console.log, change to echo(json_encode(true));

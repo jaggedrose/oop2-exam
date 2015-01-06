@@ -13,6 +13,7 @@ $ds = new DBObjectSaver(array(
 // Get player & challenge from DB
 $player = &$ds->player[0];
 $player_name = $player->name;
+$companions = &$ds->$companions;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points
@@ -34,6 +35,7 @@ $player_success = $player->success;
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
+	"companions" => &$companions,
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
 	"challengeCounter" => &$challenge_counter,
