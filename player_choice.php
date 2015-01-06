@@ -35,7 +35,7 @@ unset($ds->companions);
 
 // "Alias" variable 
 $player = &$ds->player;
-$companions = &ds->companions;
+$companions = &$ds->companions;
 
 // Create new player instance
 $new_player = new $player_class($player_name);
