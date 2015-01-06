@@ -202,6 +202,26 @@ $(function() {
 		});
 	}
 
+	function startGameAgain() {
+    $(".gameText").html("<h2>You have completed the game!</h2>");
+    $(".gameOptions").html('<button class="startagain">Start over!</button>');
+
+    //start over clickhandler
+    $(".startAgain").click(function() {
+      $.ajax({
+        url: "reset.php",
+        dataType: "json",
+        success: function() {
+				choosePlayerClass();
+				console.log("Success: ", data);
+			},
+        error: function(data) {
+          console.log("startOver error: ", data.responseText);
+        }
+      });
+    });
+  }
+
 
 
 	// Call first function needed in chain here
