@@ -52,11 +52,5 @@ array_splice($classes, $used_class_index, 1);
 $companions[] = new $classes[0]("Coco");
 $companions[] = new $classes[1]("Christian");
 
-$return_data = array (
-  "newPlayer" => &$new_player,
-  "companions" => &$companions
-);
-
 // ToDo - used for checking console.log, change to echo(json_encode(true));
-// Takes $return_data array encodes it to Json, sends it to Ajax
-echo(json_encode($return_data));
+echo(json_encode(true));

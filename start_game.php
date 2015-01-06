@@ -15,7 +15,7 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = get_class($player);
-$companions = &$ds->$companions;
+$companion1 = &$ds->$companions[0];
 
 // Checking if challenge has been changed, if so minus 5 success points
 if (isset($_REQUEST["challenge_change"])) {
