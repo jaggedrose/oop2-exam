@@ -19,13 +19,17 @@ $challenge = &$ds->challenge[0];
 $doing_challenge = $player->carryOutChallenge();
 // Counts the amount of times it takes to complete a challenge
 $challenge_counter = $challenge->playChallenge($player);
+// Points after completed challenge
+$player->success += 15;
+$player_success = $player->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
-	"challengeCounter" => &$challenge_counter
+	"challengeCounter" => &$challenge_counter,
+	"playerSuccess" => &$player_success
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

@@ -16,6 +16,14 @@ $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = get_class($player);
 
+// Checking if challenge has been changed, if so minus 5 success points
+if (isset($_REQUEST["challenge_change"])) {
+  $changed = $_REQUEST["challenge_change"];
+  if($changed == "true") {
+    $player->success -= 5;
+  }
+} 
+
 $random_challenge_nr = rand(0, 2);
 
 $challenge_json_path = "./data/challenge" . $random_challenge_nr . ".json";

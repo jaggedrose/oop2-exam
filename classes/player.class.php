@@ -35,14 +35,14 @@ class Player extends Base {
 	}
 
 	public function changeChallenge() {
-		return $this->name." changes challenge.";
+		return $this->name." changes challenge, loses 5 success points!";
 	}
 
 	public function carryOutChallenge() {
 		return $this->name." carries out the chosen challenge.";
 	}
 
-	public function carryOutChallengeWithCompanion($challenge) {
+	public function carryOutChallengeWithCompanion() {
 
 	}
 
@@ -72,11 +72,14 @@ class Player extends Base {
 		return $this->patterns;
 	}
 
-
 	public function set_success($val) {
-		if ($val < 0 || $val > 100) {
-			throw new Exception("Success must be within 0 - 100");
+		// Limiting the success points to 0 - 100
+		if ($val < 0) {
+			$val = 0;
 		}
+		else if ($val > 100) {
+			$val = 100;
+		}		
 		$this->success = $val;
 	}
 

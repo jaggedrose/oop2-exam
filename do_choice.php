@@ -28,6 +28,3 @@ $return_data = array (
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));
-
-
-

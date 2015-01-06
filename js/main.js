@@ -56,7 +56,7 @@ $(function() {
 			player_class : chosenClass
 			},
 			success: function(data) {
-				playGame();
+				playGame(false);
 				console.log("Success: ", data);
 			},
 			error: function(data) {
@@ -65,10 +65,13 @@ $(function() {
 		});
 	}
 
-	function playGame() {
+	function playGame(challengeChange) {
 		$.ajax({
 			url: "start_game.php",
 			dataType: "json",
+			data: {
+				challenge_change : challengeChange
+			},
 			success: function(data) {
 				// Above (data) is the associative array $return_data echoed from PHP
 				printChallengeData(data);
@@ -111,7 +114,17 @@ $(function() {
 		});
 		
 		$(".changeChallengeBtn").click(function() {
-			playGame();
+			$.ajax({
+			url: "do_choice.php",
+			dataType: "json",
+			success: function(data) {
+				playGame(true);
+				console.log("Success: ", data);
+			},
+			error: function(data) {
+				console.log("Error: ", data);
+			}
+		});
 			// Do not reload the page
 			return false;
 		});
@@ -178,6 +191,15 @@ $(function() {
 
 		$(".gameText").append("<h4> " + gameData["doingChallenge"] + "</h4>");
 		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["playerName"] + " has completed the challenge!</p>");
+		$(".gameText").append("<p>Success: " + gameData["playerSuccess"] + "</p>");
+
+		$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');
+		
+		$(".nextChallengeBtn").click(function() {
+			playGame(false);
+			// Do not reload the page
+			return false;
+		});
 	}
 
 
