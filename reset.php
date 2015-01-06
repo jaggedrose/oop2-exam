@@ -11,7 +11,7 @@ $ds = new DBObjectSaver(array(
 ));
 
 if (isset($_REQUEST["startAgain"])) {
-  unset($ds->players);
+  unset($ds->player);
   unset($ds->challenge);
 }
 

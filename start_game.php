@@ -57,6 +57,9 @@ $new_challenge = new Challenge($challenge);
 //start tracking challenge instance
 $current_challenge[] = $new_challenge;
 
+// Cloning player success
+$player_success = $player->success;
+
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,

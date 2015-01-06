@@ -74,8 +74,14 @@ $(function() {
 			},
 			success: function(data) {
 				// Above (data) is the associative array $return_data echoed from PHP
+				var successPoints = data["playerSuccess"];
+				if (successPoints === 0) {
+					lostStartGameAgain();
+				}
+				else {
 				printChallengeData(data);
 				console.log("Success: ", data);
+				}
 			},
 			error: function(data) {
 				console.log("Error: ", data);
@@ -114,17 +120,7 @@ $(function() {
 		});
 		
 		$(".changeChallengeBtn").click(function() {
-			$.ajax({
-				url: "do_choice.php",
-				dataType: "json",
-				success: function(data) {
-					playGame(true);
-					console.log("Success: ", data);
-				},
-				error: function(data) {
-					console.log("Error: ", data);
-				}
-			});
+			playGame(true);
 			// Do not reload the page
 			return false;
 		});
@@ -165,17 +161,7 @@ $(function() {
 		});
 
 		$(".companionChallengeBtn").click(function() {
-			$.ajax({
-				url: "play_challenge.php",
-				dataType: "json",
-				success: function(data) {
-					playChallenge(true);
-					console.log("Success: ", data);
-				},
-				error: function(data) {
-					console.log("Error: ", data);
-				}
-			});
+			playChallenge(true);
 			// Do not reload the page
 			return false;
 		});
@@ -189,8 +175,17 @@ $(function() {
 				challenge_companion : challengeCompanion
 			},
 			success: function(data) {
-				printActiveChallenge(data);
-				console.log("Success: ", data);
+				var successPoints = data["playerSuccess"];
+				if (successPoints === 100) {
+					winStartGameAgain();
+				}
+				else if (successPoints === 0) {
+					lostStartGameAgain();
+				}
+				else {
+					printActiveChallenge(data);
+					console.log("Success: ", data);
+				}
 			},
 			error: function(data) {
 				console.log("Error: ", data);
@@ -215,25 +210,43 @@ $(function() {
 		});
 	}
 
-	function startGameAgain() {
-    $(".gameText").html("<h2>You have completed the game!</h2>");
-    $(".gameOptions").html('<button class="startagain">Start over!</button>');
+	function winStartGameAgain() {
+		$(".gameText").html("<h2>You have won the game!</h2>");
+		$(".gameOptions").html('<button class="startAgain">Start over!</button>');
 
-    //start over clickhandler
-    $(".startAgain").click(function() {
-      $.ajax({
-        url: "reset.php",
-        dataType: "json",
-        success: function() {
+		//start over clickhandler
+		$(".startAgain").click(function() {
+			$.ajax({
+				url: "reset.php",
+				dataType: "json",
+				success: function(data) {
 				choosePlayerClass();
-				console.log("Success: ", data);
-			},
-        error: function(data) {
-          console.log("startOver error: ", data.responseText);
-        }
-      });
-    });
-  }
+				},
+				error: function(data) {
+				console.log("startOver error: ", data.responseText);
+				}
+			});
+		});
+	}
+
+	function lostStartGameAgain() {
+		$(".gameText").html("<h2>You have lost the game!</h2>");
+		$(".gameOptions").html('<button class="startAgain">Start over!</button>');
+
+		//start over clickhandler
+		$(".startAgain").click(function() {
+			$.ajax({
+				url: "reset.php",
+				dataType: "json",
+				success: function(data) {
+				choosePlayerClass();
+				},
+				error: function(data) {
+				console.log("startOver error: ", data.responseText);
+				}
+			});
+		});
+	}
 
 
 
