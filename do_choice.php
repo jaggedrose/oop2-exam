@@ -24,6 +24,7 @@ $return_data = array (
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
 	"challenge" => &$challenge,
+	"playerSuccess" => &$player_success,
 	"acceptedString" => &$accepted_string
 );
 // Takes array, encodes it to Json & sends it to Ajax

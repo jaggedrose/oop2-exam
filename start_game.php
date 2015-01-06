@@ -61,7 +61,8 @@ $current_challenge[] = $new_challenge;
 $return_data = array (
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
-	"challenge" => &$challenge
+	"challenge" => &$challenge,
+  "playerSuccess" => &$player_success
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

@@ -90,7 +90,7 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
 		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
@@ -150,7 +150,7 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
 		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
