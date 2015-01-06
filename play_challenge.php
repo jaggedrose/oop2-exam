@@ -15,6 +15,14 @@ $player = &$ds->player[0];
 $player_name = $player->name;
 $challenge = &$ds->challenge[0];
 
+// Checking if challenge is played with companion, if so minus 5 success points
+if (isset($_REQUEST["challenge_companion"])) {
+	$companion = $_REQUEST["challenge_companion"];
+	if($companion == "true") {
+		$player->success -= 5;
+	}
+} 
+
 // Getting string in method carryOutChallenge from player.class.php
 $doing_challenge = $player->carryOutChallenge();
 // Counts the amount of times it takes to complete a challenge

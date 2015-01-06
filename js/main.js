@@ -115,16 +115,16 @@ $(function() {
 		
 		$(".changeChallengeBtn").click(function() {
 			$.ajax({
-			url: "do_choice.php",
-			dataType: "json",
-			success: function(data) {
-				playGame(true);
-				console.log("Success: ", data);
-			},
-			error: function(data) {
-				console.log("Error: ", data);
-			}
-		});
+				url: "do_choice.php",
+				dataType: "json",
+				success: function(data) {
+					playGame(true);
+					console.log("Success: ", data);
+				},
+				error: function(data) {
+					console.log("Error: ", data);
+				}
+			});
 			// Do not reload the page
 			return false;
 		});
@@ -159,22 +159,35 @@ $(function() {
 		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with companion!</button>');
 
 		$(".doChallengeBtn").click(function() {
-			playChallenge();
+			playChallenge(false);
 			// Do not reload the page
 			return false;
 		});
 
 		$(".companionChallengeBtn").click(function() {
-			playChallenge();
+			$.ajax({
+				url: "play_challenge.php",
+				dataType: "json",
+				success: function(data) {
+					playChallenge(true);
+					console.log("Success: ", data);
+				},
+				error: function(data) {
+					console.log("Error: ", data);
+				}
+			});
 			// Do not reload the page
 			return false;
 		});
 	}
 
-	function playChallenge() {
+	function playChallenge(challengeCompanion) {
 		$.ajax({
 			url: "play_challenge.php",
 			dataType: "json",
+			data: {
+				challenge_companion : challengeCompanion
+			},
 			success: function(data) {
 				printActiveChallenge(data);
 				console.log("Success: ", data);
