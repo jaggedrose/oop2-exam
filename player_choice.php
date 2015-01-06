@@ -31,9 +31,11 @@ $ds = new DBObjectSaver(array(
 
 // Empty player table in DB
 unset($ds->player);
+unset($ds->companions);
 
 // "Alias" variable 
 $player = &$ds->player;
+$companions = &ds->companions;
 
 // Create new player instance
 $new_player = new $player_class($player_name);
@@ -41,6 +43,20 @@ $new_player = new $player_class($player_name);
 //start tracking player instance
 $player[] = $new_player;
 
+//Make 2 computer players
+$classes = array("Dressmaker", "Tailor", "Patternmaker"); 
+
+$used_class_index = array_search($player_class, $classes);
+array_splice($classes, $used_class_index, 1);
+
+$companions[] = new $classes[0]("Coco");
+$companions[] = new $classes[1]("Christian");
+
+$return_data = array (
+  "newPlayer" => &$new_player,
+  "companions" => &$companions,
+);
+
 // ToDo - used for checking console.log, change to echo(json_encode(true));
-// Takes $new_player instance encodes it to Json, sends it to Ajax
-echo(json_encode($new_player));
+// Takes $return_data array encodes it to Json, sends it to Ajax
+echo(json_encode($return_data));
