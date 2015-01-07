@@ -1,6 +1,6 @@
 <?php
 
-class Tailor extends Player {
+class Tailor extends Character {
 	
 	protected $needlework = 80;
 	protected $sewing = 40;

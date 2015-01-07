@@ -1,6 +1,6 @@
 <?php
 
-class Patternmaker extends Player {
+class Patternmaker extends Character {
 	
 	protected $needlework = 10;
 	protected $sewing = 30;

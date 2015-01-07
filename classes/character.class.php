@@ -1,6 +1,6 @@
  <?php
 
-class Player extends Base {
+class Character extends Base {
 
 	protected $name;
 	protected $craft;
