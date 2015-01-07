@@ -37,13 +37,13 @@ $(function() {
 				alert("You must enter a name & select a class!");
 				return false;
 			}
-			submitPlayerName(pName, pClass);
+			submitHumanPlayer(pName, pClass);
 			// Do not reload the page
 			return false;
 		});
 	}
 	
-	function submitPlayerName(chosenName, chosenClass) {
+	function submitHumanPlayer(chosenName, chosenClass) {
 		$.ajax({
 			url: "player_choice.php",
 			dataType: "json",
@@ -147,6 +147,7 @@ $(function() {
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
+		
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
 
