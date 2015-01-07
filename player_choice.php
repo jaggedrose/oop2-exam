@@ -53,8 +53,17 @@ $companions[] = new $classes[0]("Coco");
 $companions[] = new $classes[1]("Christian");
 
 $return_data = array (
-  "newPlayer" => $new_player,
-  "companions" => &$companions
+  "newPlayer" => &$new_player,
+  "companions" => array(
+      array(
+        "companion1Name" => $companions[0]->name,
+        "companion1Class" => get_class($companions[0])
+      ),
+      array(
+        "companion2Name" => $companions[1]->name,
+        "companion2Class" => get_class($companions[1])
+      ),
+    ),
 );
 
 // ToDo - used for checking console.log, change to echo(json_encode(true));

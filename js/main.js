@@ -93,7 +93,7 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["success"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["success"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["success"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
 		
 

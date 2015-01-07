@@ -110,10 +110,5 @@ class Player extends Base {
 		}
 		$this->patterns = $val;
 	}
-
-   
-   
-
-
-	
+		
 }

@@ -15,6 +15,10 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = get_class($player);
+$companion1_name = $companions[0]->name;
+// $companion1_class = get_class($companions[0]);
+
+
 
 
 // Checking if challenge has been changed, if so minus 5 success points
@@ -62,12 +66,21 @@ $current_challenge[] = $new_challenge;
 $player_success = $player->success;
 
 // Collect all data needed in an associative array
-$return_data = array (
+$return_data = array(
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
   "playerSuccess" => &$player_success,
 	"challenge" => &$challenge,
-  // "companions" => &$companions
-);
+  "companions" => array(
+      array(
+        "companion1Name" => $companions[0]->name,
+        "companion1Class" => $companions[0]->class
+      ),
+      // array(
+      //   "companion2Name" => $companions[1]->name,
+      //   "companion2Class" => get_class($companions[1])
+      // ),
+    ),
+ );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));
