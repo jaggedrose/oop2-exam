@@ -1,0 +1,12 @@
+{
+  "id" : 4,
+  "title" : "Make a tailored blazer",
+  "description" : "Make a tailored blazer.",
+  "skills" : {		
+		"needlework" : 100,
+		"sewing" : 20,
+		"cutting" : 10,
+		"patterns" : 10		
+	}
+
+}

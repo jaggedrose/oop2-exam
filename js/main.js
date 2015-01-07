@@ -48,12 +48,8 @@ $(function() {
 			url: "player_choice.php",
 			dataType: "json",
 			data: {
-			// game_id : 0,
-			// create_player: {
-			//   "class" : "Aria",
-			//   "name" : "aName"
-			player_name : chosenName,
-			player_class : chosenClass
+				player_name : chosenName,
+				player_class : chosenClass
 			},
 			success: function(data) {
 				playGame(false);
@@ -97,9 +93,9 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companions"]["class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
-
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["success"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["success"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
+		
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
 		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
@@ -149,7 +145,8 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<p>ToDo - Same as above but for the 2 computer players.</p>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companions"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companions"] + "</li></ul>");
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
 

@@ -52,5 +52,10 @@ array_splice($classes, $used_class_index, 1);
 $companions[] = new $classes[0]("Coco");
 $companions[] = new $classes[1]("Christian");
 
+$return_data = array (
+  "newPlayer" => $new_player,
+  "companions" => &$companions
+);
+
 // ToDo - used for checking console.log, change to echo(json_encode(true));
-echo(json_encode(true));
+echo(json_encode($return_data));

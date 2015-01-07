@@ -1,0 +1,12 @@
+{
+  "id" : 8,
+  "title" : "Make a dress to fit certain measurements",
+  "description" : "Make a simple empire dress to fit exact measurements.",
+  "skills" : {		
+		"needlework" : 0,
+		"sewing" : 100,
+		"cutting" : 20,
+		"patterns" : 30		
+	}
+
+}

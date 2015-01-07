@@ -1,0 +1,12 @@
+{
+  "id" : 9,
+  "title" : "Alter a pair of suit trousers",
+  "description" : "Shorten the legs & take in the waistband on a pair of suit trousers.",
+  "skills" : {		
+		"needlework" : 80,
+		"sewing" : 50,
+		"cutting" : 20,
+		"patterns" : 0		
+	}
+
+}

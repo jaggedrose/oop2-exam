@@ -13,7 +13,7 @@ $ds = new DBObjectSaver(array(
 // Get player & challenge from DB
 $player = &$ds->player[0];
 $player_name = $player->name;
-$companions = &$ds->$companions;
+// $companions = &$ds->$companions;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points

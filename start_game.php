@@ -15,7 +15,7 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = get_class($player);
-$companion1 = &$ds->$companions[0];
+
 
 // Checking if challenge has been changed, if so minus 5 success points
 if (isset($_REQUEST["challenge_change"])) {
@@ -25,7 +25,7 @@ if (isset($_REQUEST["challenge_change"])) {
   }
 } 
 
-$random_challenge_nr = rand(0, 2);
+$random_challenge_nr = rand(0, 9);
 
 $challenge_json_path = "./data/challenge" . $random_challenge_nr . ".json";
 
@@ -65,9 +65,9 @@ $player_success = $player->success;
 $return_data = array (
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
-	"challenge" => &$challenge,
   "playerSuccess" => &$player_success,
-  "companions" => &$companions
+	"challenge" => &$challenge,
+  // "companions" => &$companions
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

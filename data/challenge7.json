@@ -1,0 +1,12 @@
+{
+  "id" : 7,
+  "title" : "Alter a shirt",
+  "description" : "You have a shirt that is much too large, alter it to fit you.",
+  "skills" : {		
+		"needlework" : 20,
+		"sewing" : 100,
+		"cutting" : 30,
+		"patterns" : 0		
+	}
+
+}
