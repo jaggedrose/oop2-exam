@@ -32,6 +32,8 @@ $challenge_counter = $challenge->play_challenge($player, $companions);
 // Points after completed challenge
 $player->success += 15;
 $player_success = $player->success;
+$companion1_success = $companions[0]->success;
+$companion2_success = $companions[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
@@ -41,7 +43,9 @@ $return_data = array (
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
 	"challengeCounter" => &$challenge_counter,
-	"playerSuccess" => &$player_success
+	"playerSuccess" => &$player_success,
+	"companion1Success" => &$companion1_success,
+	"companion2Success" => &$companion2_success
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));
