@@ -3,6 +3,7 @@
 class Player extends Base {
 
 	protected $name;
+	protected $craft;
 	protected $success = 50;
 
 	protected $tools = array();
@@ -12,8 +13,9 @@ class Player extends Base {
 	protected $cutting;
 	protected $patterns;
 
-	public function __construct($name) {
+	public function __construct($name, $craft) {
     	$this->name = $name;
+    	$this->craft = $craft;
 	}
 
 	// Methods we will use
@@ -50,6 +52,10 @@ class Player extends Base {
 	// Getters & setters
 	public function get_name() {
 		return $this->name;
+	}
+
+	public function get_craft() {
+		return $this->craft;
 	}
 
 	public function get_success() {
@@ -110,5 +116,5 @@ class Player extends Base {
 		}
 		$this->patterns = $val;
 	}
-		
+
 }

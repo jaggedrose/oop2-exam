@@ -10,16 +10,15 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Get the first player from the database, 
+// Get the first player from the database, &$ds->player[0];
 // we know that this is always the human player
 $player = &$ds->player[0];
 $player_name = $player->name;
-$player_class = get_class($player);
-$companion1_name = $companions[0]->name;
-// $companion1_class = get_class($companions[0]);
-
-
-
+$player_class = $player->craft;
+$companion1_name = &$ds->companions[0]->name;
+$companion1_craft = &$ds->companions[0]->craft;
+$companion2_name = &$ds->companions[1]->name;
+$companion2_craft = &$ds->companions[1]->craft;
 
 // Checking if challenge has been changed, if so minus 5 success points
 if (isset($_REQUEST["challenge_change"])) {
@@ -71,16 +70,10 @@ $return_data = array(
 	"playerClass" => &$player_class,
   "playerSuccess" => &$player_success,
 	"challenge" => &$challenge,
-  "companions" => array(
-      array(
-        "companion1Name" => $companions[0]->name,
-        "companion1Class" => $companions[0]->class
-      ),
-      // array(
-      //   "companion2Name" => $companions[1]->name,
-      //   "companion2Class" => get_class($companions[1])
-      // ),
-    ),
+  "companion1Name" => &$companion1_name,
+  "companion1Class" => &$companion1_craft,
+  "companion2Name" => &$companion2_name,
+  "companion2Class" => &$companion2_craft
  );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

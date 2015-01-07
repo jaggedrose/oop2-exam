@@ -38,7 +38,7 @@ $player = &$ds->player;
 $companions = &$ds->companions;
 
 // Create new player instance
-$new_player = new $player_class($player_name);
+$new_player = new $player_class($player_name, $player_class);
 
 //start tracking player instance
 $player[] = $new_player;
@@ -49,22 +49,22 @@ $classes = array("Dressmaker", "Tailor", "Patternmaker");
 $used_class_index = array_search($player_class, $classes);
 array_splice($classes, $used_class_index, 1);
 
-$companions[] = new $classes[0]("Coco");
-$companions[] = new $classes[1]("Christian");
+$companions[] = new $classes[0]("Coco", $classes[0]);
+$companions[] = new $classes[1]("Christian", $classes[1]);
 
-$return_data = array (
-  "newPlayer" => &$new_player,
-  "companions" => array(
-      array(
-        "companion1Name" => $companions[0]->name,
-        "companion1Class" => get_class($companions[0])
-      ),
-      array(
-        "companion2Name" => $companions[1]->name,
-        "companion2Class" => get_class($companions[1])
-      ),
-    ),
-);
+// $return_data = array (
+//   "newPlayer" => &$new_player,
+//   "companions" => array(
+//       array(
+//         "companion1Name" => &$companions[0]->name,
+//         "companion1Class" => &$companions[0]->craft
+//       ),
+//       array(
+//         "companion2Name" => &$companions[1]->name,
+//         "companion2Class" => &$companions[1]->craft
+//       ),
+//     ),
+// );
 
 // ToDo - used for checking console.log, change to echo(json_encode(true));
-echo(json_encode($return_data));
+echo(json_encode(true));
