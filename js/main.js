@@ -75,8 +75,8 @@ $(function() {
 					lostStartGameAgain();
 				}
 				else {
-				printChallengeData(data);
-				console.log("Success: ", data);
+					printChallengeData(data);
+					console.log("Success: ", data);
 				}
 			},
 			error: function(data) {
@@ -93,8 +93,8 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion1Success"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion2Success"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
 		
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
@@ -145,8 +145,8 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion1Success"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion2Success"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
 		
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");

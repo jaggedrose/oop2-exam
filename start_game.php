@@ -15,10 +15,11 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = $player->craft;
-$companion1_name = &$ds->companions[0]->name;
-$companion1_craft = &$ds->companions[0]->craft;
-$companion2_name = &$ds->companions[1]->name;
-$companion2_craft = &$ds->companions[1]->craft;
+$companions = &$ds->companions;
+$companion1_name = $companions[0]->name;
+$companion1_craft = $companions[0]->craft;
+$companion2_name = $companions[1]->name;
+$companion2_craft = $companions[1]->craft;
 
 // Checking if challenge has been changed, if so minus 5 success points
 if (isset($_REQUEST["challenge_change"])) {
@@ -61,8 +62,10 @@ $new_challenge = new Challenge($challenge);
 //start tracking challenge instance
 $current_challenge[] = $new_challenge;
 
-// Cloning player success
+// Cloning player & companions success
 $player_success = $player->success;
+$companion1_success = $companions[0]->success;
+$companion2_success = $companions[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array(
@@ -72,8 +75,10 @@ $return_data = array(
 	"challenge" => &$challenge,
   "companion1Name" => &$companion1_name,
   "companion1Class" => &$companion1_craft,
+  "companion1Success" => &$companion1_success,
   "companion2Name" => &$companion2_name,
-  "companion2Class" => &$companion2_craft
+  "companion2Class" => &$companion2_craft,
+  "companion2Success" => &$companion2_success
  );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

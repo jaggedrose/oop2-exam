@@ -14,18 +14,20 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = $player->craft;
-$companion1_name = &$ds->companions[0]->name;
-$companion1_craft = &$ds->companions[0]->craft;
-$companion2_name = &$ds->companions[1]->name;
-$companion2_craft = &$ds->companions[1]->craft;
+$companions = &$ds->companions;
+$companion1_name = $companions[0]->name;
+$companion1_craft = $companions[0]->craft;
+$companion2_name = $companions[1]->name;
+$companion2_craft = $companions[1]->craft;
 $challenge = &$ds->challenge[0];
-
-
 
 // Getting string in method acceptChallenge from player.class.php
 $accepted_string = $player->acceptChallenge($challenge);
 
+// Cloning player & companions success
 $player_success = $player->success;
+$companion1_success = $companions[0]->success;
+$companion2_success = $companions[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
@@ -34,8 +36,10 @@ $return_data = array (
 	"playerSuccess" => &$player_success,
 	"companion1Name" => &$companion1_name,
 	"companion1Class" => &$companion1_craft,
+	"companion1Success" => &$companion1_success,
 	"companion2Name" => &$companion2_name,
 	"companion2Class" => &$companion2_craft,
+	"companion2Success" => &$companion2_success,
 	"challenge" => &$challenge,	
 	"acceptedString" => &$accepted_string
 );

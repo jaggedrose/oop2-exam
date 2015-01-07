@@ -13,7 +13,8 @@ $ds = new DBObjectSaver(array(
 // Get player & challenge from DB
 $player = &$ds->player[0];
 $player_name = $player->name;
-// $companions = &$ds->$companions;
+$companion1_name = &$ds->companions[0]->name;
+$companion2_name = &$ds->companions[1]->name;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points
@@ -27,7 +28,7 @@ if (isset($_REQUEST["challenge_companion"])) {
 // Getting string in method carryOutChallenge from player.class.php
 $doing_challenge = $player->carryOutChallenge();
 // Counts the amount of times it takes to complete a challenge
-$challenge_counter = $challenge->play_challenge($player);
+$challenge_counter = $challenge->play_challenge($player, $companions);
 // Points after completed challenge
 $player->success += 15;
 $player_success = $player->success;
@@ -35,7 +36,8 @@ $player_success = $player->success;
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
-	"companions" => &$companions,
+	"companion1Name" => &$companion1_name,
+	"companion2Name" => &$companion2_name,
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
 	"challengeCounter" => &$challenge_counter,
