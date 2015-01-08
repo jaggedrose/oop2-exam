@@ -40,8 +40,18 @@ class Character extends Base {
 		return $this->name." changes challenge, loses 5 success points!";
 	}
 
-	public function carryOutChallenge() {
-		return $this->name." carries out the chosen challenge.";
+	public function carryOutChallenge($challenge, $companions) {
+		$results = array();
+		$results[$this->name]=$challenge->play_challenge($this);
+		$results[$companions[0]->name]=$challenge->play_challenge($companions[0]);
+		$results[$companions[1]->name]=$challenge->play_challenge($companions[1]);
+
+		asort($results, SORT_NUMERIC);
+
+
+
+
+		return $results;
 	}
 
 	public function carryOutChallengeWithCompanion() {

@@ -200,6 +200,11 @@ $(function() {
 		$(".gameText").append("<h4> " + gameData["doingChallenge"] + "</h4>");
 		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["playerName"] + " has completed the challenge!</p>");
 		$(".gameText").append("<p>Success: " + gameData["playerSuccess"] + "</p>");
+		// $(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["companion1Name"] + " has completed the challenge!</p>");
+		// $(".gameText").append("<p>Success: " + gameData["companion1Success"] + "</p>");
+		// $(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["companion2Name"] + " has completed the challenge!</p>");
+		// $(".gameText").append("<p>Success: " + gameData["companion2Success"] + "</p>");
+		
 
 		$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');
 		
