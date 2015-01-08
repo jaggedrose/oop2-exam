@@ -29,9 +29,10 @@ if (isset($_REQUEST["challenge_companion"])) {
 // Getting string in method carryOutChallenge from player.class.php
 $doing_challenge = $player->carryOutChallenge($challenge, $contestants);
 // Counts the amount of times it takes to complete a challenge
-$challenge_counter = $challenge->play_challenge($player, $contestants);
+$challenge_counter = $challenge->play_challenge($player);
+$challenge_results = $results;
 // Points after completed challenge
-$player->success += 15;
+// $player->success += 15;
 $player_success = $player->success;
 $contestant1_success = $contestants[0]->success;
 $contestant2_success = $contestants[1]->success;
@@ -46,7 +47,8 @@ $return_data = array (
 	"challengeCounter" => &$challenge_counter,
 	"playerSuccess" => &$player_success,
 	"contestant1Success" => &$contestant1_success,
-	"contestant2Success" => &$contestant2_success
+	"contestant2Success" => &$contestant2_success,
+	"challengeResults" => &$challenge_results
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

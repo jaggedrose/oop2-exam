@@ -2,9 +2,9 @@
 
 class Dressmaker extends Character {
 	
-	protected $needlework = 50;
-	protected $sewing = 80;
-	protected $cutting = 50;
+	protected $needlework = 40;
+	protected $sewing = 100;
+	protected $cutting = 40;
 	protected $patterns = 20;
 
 	

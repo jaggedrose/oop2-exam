@@ -13,7 +13,8 @@ class Challenge extends Base {
 
 	public function __construct($challenge) {
 		// Getting the associative array from method restart
-		$this->challenge = $challenge;		
+		$this->challenge = $challenge;
+		$this->restart();		
 	}
 
 	private function restart() {
