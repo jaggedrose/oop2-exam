@@ -93,8 +93,8 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion1Success"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion2Success"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
 		
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
@@ -145,14 +145,14 @@ $(function() {
 
 		$(".gameText").append("<h3>Player Info!</h3>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion1Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion1Success"] + " </li><li><strong>Class:</strong> " + gameData["companion1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["companion2Name"] + " </li><li><strong>Success points:</strong> " + gameData["companion2Success"] + " </li><li><strong>Class:</strong> " + gameData["companion2Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
 		
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
 
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
-		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with companion!</button>');
+		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with contestant!</button>');
 
 		$(".doChallengeBtn").click(function() {
 			playChallenge(false);
@@ -197,13 +197,14 @@ $(function() {
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
-		$(".gameText").append("<h4> " + gameData["doingChallenge"] + "</h4>");
+		// ToDo - Add challenge Id number to headline???
+		$(".gameText").append("<h4>The results of the challenge</h4>");
 		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["playerName"] + " has completed the challenge!</p>");
 		$(".gameText").append("<p>Success: " + gameData["playerSuccess"] + "</p>");
-		// $(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["companion1Name"] + " has completed the challenge!</p>");
-		// $(".gameText").append("<p>Success: " + gameData["companion1Success"] + "</p>");
-		// $(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["companion2Name"] + " has completed the challenge!</p>");
-		// $(".gameText").append("<p>Success: " + gameData["companion2Success"] + "</p>");
+		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["contestant1Name"] + " has completed the challenge!</p>");
+		$(".gameText").append("<p>Success: " + gameData["contestant1Success"] + "</p>");
+		$(".gameText").append("<p>After " + gameData["challengeCounter"] + " attempts " + gameData["contestant2Name"] + " has completed the challenge!</p>");
+		$(".gameText").append("<p>Success: " + gameData["contestant2Success"] + "</p>");
 		
 
 		$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');
