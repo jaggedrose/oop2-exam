@@ -14,32 +14,32 @@ $ds = new DBObjectSaver(array(
 $player = &$ds->player[0];
 $player_name = $player->name;
 $player_class = $player->craft;
-$companions = &$ds->companions;
-$companion1_name = $companions[0]->name;
-$companion1_craft = $companions[0]->craft;
-$companion2_name = $companions[1]->name;
-$companion2_craft = $companions[1]->craft;
+$contestants = &$ds->contestants;
+$contestant1_name = $contestants[0]->name;
+$contestant1_craft = $contestants[0]->craft;
+$contestant2_name = $contestants[1]->name;
+$contestant2_craft = $contestants[1]->craft;
 $challenge = &$ds->challenge[0];
 
 // Getting string in method acceptChallenge from player.class.php
 $accepted_string = $player->acceptChallenge($challenge);
 
-// Cloning player & companions success
+// Cloning player & contestants success
 $player_success = $player->success;
-$companion1_success = $companions[0]->success;
-$companion2_success = $companions[1]->success;
+$contestant1_success = $contestants[0]->success;
+$contestant2_success = $contestants[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
 	"playerSuccess" => &$player_success,
-	"companion1Name" => &$companion1_name,
-	"companion1Class" => &$companion1_craft,
-	"companion1Success" => &$companion1_success,
-	"companion2Name" => &$companion2_name,
-	"companion2Class" => &$companion2_craft,
-	"companion2Success" => &$companion2_success,
+	"contestant1Name" => &$contestant1_name,
+	"contestant1Class" => &$contestant1_craft,
+	"contestant1Success" => &$contestant1_success,
+	"contestant2Name" => &$contestant2_name,
+	"contestant2Class" => &$contestant2_craft,
+	"contestant2Success" => &$contestant2_success,
 	"challenge" => &$challenge,	
 	"acceptedString" => &$accepted_string
 );

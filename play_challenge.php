@@ -13,9 +13,9 @@ $ds = new DBObjectSaver(array(
 // Get player & challenge from DB
 $player = &$ds->player[0];
 $player_name = $player->name;
-$companions = &$ds->companions;
-$companion1_name = &$ds->companions[0]->name;
-$companion2_name = &$ds->companions[1]->name;
+$contestants = &$ds->contestants;
+$contestant1_name = &$ds->contestants[0]->name;
+$contestant2_name = &$ds->contestants[1]->name;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points
@@ -27,26 +27,26 @@ if (isset($_REQUEST["challenge_companion"])) {
 } 
 
 // Getting string in method carryOutChallenge from player.class.php
-$doing_challenge = $player->carryOutChallenge($challenge, $companions);
+$doing_challenge = $player->carryOutChallenge($challenge, $contestants);
 // Counts the amount of times it takes to complete a challenge
-$challenge_counter = $challenge->play_challenge($player, $companions);
+$challenge_counter = $challenge->play_challenge($player, $contestants);
 // Points after completed challenge
 $player->success += 15;
 $player_success = $player->success;
-$companion1_success = $companions[0]->success;
-$companion2_success = $companions[1]->success;
+$contestant1_success = $contestants[0]->success;
+$contestant2_success = $contestants[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
 	"playerName" => &$player_name,
-	"companion1Name" => &$companion1_name,
-	"companion2Name" => &$companion2_name,
+	"contestant1Name" => &$contestant1_name,
+	"contestant2Name" => &$contestant2_name,
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
 	"challengeCounter" => &$challenge_counter,
 	"playerSuccess" => &$player_success,
-	"companion1Success" => &$companion1_success,
-	"companion2Success" => &$companion2_success
+	"contestant1Success" => &$contestant1_success,
+	"contestant2Success" => &$contestant2_success
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

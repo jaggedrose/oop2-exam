@@ -9,15 +9,15 @@ class Team extends Character {
 	protected $cutting;
 	protected $patterns;
 
-	public function __construct($name, $myPlayer, $companionPlayer) {
+	public function __construct($name, $myPlayer, $contestantPlayer) {
 		$this->teamMembers[] = $myPlayer;
-		$this->teamMembers[] = $companionPlayer;
+		$this->teamMembers[] = $contestantPlayer;
 
 		// sum skill points of team members
-		$this->needlework = $myPlayer->needlework + $companionPlayer->needlework;
-		$this->sewing = $myPlayer->sewing + $companionPlayer->sewing;
-		$this->cutting = $myPlayer->cutting + $companionPlayer->cutting;
-		$this->patterns = $myPlayer->patterns + $companionPlayer->patterns;
+		$this->needlework = $myPlayer->needlework + $contestantPlayer->needlework;
+		$this->sewing = $myPlayer->sewing + $contestantPlayer->sewing;
+		$this->cutting = $myPlayer->cutting + $contestantPlayer->cutting;
+		$this->patterns = $myPlayer->patterns + $contestantPlayer->patterns;
 
 	parent::__construct($name);
 

@@ -40,14 +40,16 @@ class Character extends Base {
 		return $this->name." changes challenge, loses 5 success points!";
 	}
 
-	public function carryOutChallenge($challenge, $companions) {
+	public function carryOutChallenge($challenge, $contestants) {
 		$results = array();
 		// Getting each players result from the challenge
 		$results[$this->name] = $challenge->play_challenge($this);
-		$results[$companions[0]->name] = $challenge->play_challenge($companions[0]);
-		$results[$companions[1]->name] = $challenge->play_challenge($companions[1]);
+		$results[$contestants[0]->name] = $challenge->play_challenge($contestants[0]);
+		$results[$contestants[1]->name] = $challenge->play_challenge($contestants[1]);
 		// Sorting by number of attempts it takes to complete the challenge
 		asort($results, SORT_NUMERIC);
+	// ToDo - Add points to player that completed challenge first & minus points to last player
+
 		return $results;
 	}
 

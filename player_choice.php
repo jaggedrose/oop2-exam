@@ -31,11 +31,11 @@ $ds = new DBObjectSaver(array(
 
 // Empty player table in DB
 unset($ds->player);
-unset($ds->companions);
+unset($ds->contestants);
 
 // "Alias" variable 
 $player = &$ds->player;
-$companions = &$ds->companions;
+$contestants = &$ds->contestants;
 
 // Create new player instance
 $new_player = new $player_class($player_name, $player_class);
@@ -49,19 +49,19 @@ $classes = array("Dressmaker", "Tailor", "Patternmaker");
 $used_class_index = array_search($player_class, $classes);
 array_splice($classes, $used_class_index, 1);
 
-$companions[] = new $classes[0]("Coco", $classes[0]);
-$companions[] = new $classes[1]("Christian", $classes[1]);
+$contestants[] = new $classes[0]("Coco", $classes[0]);
+$contestants[] = new $classes[1]("Christian", $classes[1]);
 
 // $return_data = array (
 //   "newPlayer" => &$new_player,
-//   "companions" => array(
+//   "contestants" => array(
 //       array(
-//         "companion1Name" => &$companions[0]->name,
-//         "companion1Class" => &$companions[0]->craft
+//         "contestant1Name" => &$contestants[0]->name,
+//         "contestant1Class" => &$contestants[0]->craft
 //       ),
 //       array(
-//         "companion2Name" => &$companions[1]->name,
-//         "companion2Class" => &$companions[1]->craft
+//         "contestant2Name" => &$contestants[1]->name,
+//         "contestant2Class" => &$contestants[1]->craft
 //       ),
 //     ),
 // );
