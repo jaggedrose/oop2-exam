@@ -12,13 +12,13 @@ class Challenge extends Base {
 	public $challenge;
 
 	public function __construct($challenge) {
-		// Getting the associative array from restart
+		// Getting the associative array from method restart
 		$this->challenge = $challenge;		
 	}
 
 	private function restart() {
 		$challenge = $this->challenge;
-
+		// Challenges associative array that is re-used in the constructor
 		$this->id = $challenge["id"];
 		$this->title = $challenge["title"];
 		$this->description = $challenge["description"];
@@ -26,12 +26,13 @@ class Challenge extends Base {
 		$this->sewing = $challenge["skills"]["sewing"];
 		$this->cutting = $challenge["skills"]["cutting"];
 		$this->patterns = $challenge["skills"]["patterns"];
-
 	}
    
   	public function play_challenge($player) {
   		$counter = 0;
+  		// Resetting the challenge skills for the next player to carry out the challenge.
   		$this->restart();
+  		// ToDo - Add something like Thomas's winChances to make game "fair". Check each players proficiency to see who is best to win game.
   		while (!$this->is_complete()) {
   			$this->needlework -= $player->needlework;
   			$this->sewing -= $player->sewing;

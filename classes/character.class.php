@@ -42,15 +42,12 @@ class Character extends Base {
 
 	public function carryOutChallenge($challenge, $companions) {
 		$results = array();
-		$results[$this->name]=$challenge->play_challenge($this);
-		$results[$companions[0]->name]=$challenge->play_challenge($companions[0]);
-		$results[$companions[1]->name]=$challenge->play_challenge($companions[1]);
-
+		// Getting each players result from the challenge
+		$results[$this->name] = $challenge->play_challenge($this);
+		$results[$companions[0]->name] = $challenge->play_challenge($companions[0]);
+		$results[$companions[1]->name] = $challenge->play_challenge($companions[1]);
+		// Sorting by number of attempts it takes to complete the challenge
 		asort($results, SORT_NUMERIC);
-
-
-
-
 		return $results;
 	}
 
