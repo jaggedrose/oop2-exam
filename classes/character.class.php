@@ -47,8 +47,8 @@ class Character extends Base {
 		$results[$contestants[0]->name] = $challenge->play_challenge($contestants[0]);
 		$results[$contestants[1]->name] = $challenge->play_challenge($contestants[1]);
 		// Sorting by number of attempts it takes to complete the challenge
-		asort($results, SORT_NUMERIC);
-	// ToDo - Add points to player that completed challenge first & minus points to last player
+		
+		// ToDo - Add points to player that completed challenge first & minus points to last player
 
 		return $results;
 	}

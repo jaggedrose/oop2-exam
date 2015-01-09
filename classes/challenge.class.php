@@ -33,7 +33,7 @@ class Challenge extends Base {
   		$counter = 0;
   		// Resetting the challenge skills for the next player to carry out the challenge.
   		$this->restart();
-  		// ToDo - Add something like Thomas's winChances to make game "fair". Check each players proficiency to see who is best to win game.
+  		// ToDo - Add something like winChances to make game "fair". Check each players proficiency? to see who is best to win game.
   		while (!$this->is_complete()) {
   			$this->needlework -= $player->needlework;
   			$this->sewing -= $player->sewing;
@@ -54,6 +54,75 @@ class Challenge extends Base {
 
 
 	}
+
+	public function howGoodAMatch($person){
+    //total points a person has
+    $sum= 0;
+    //total points possible for this challenge
+    $max = 0;
+
+	$challengeSkills = array() 
+	{
+		"needlework" => $needlework,
+		 "sewing" => $sewing,
+	 "cutting" => $cutting,
+	 "patterns" => $patterns
+	};
+
+    //calculate how good of a match a person is to this challenge
+    foreach($challengeSkills as $skill => $points){
+      //by checking how many skillpoints the challenge requires
+      $needed = $points;
+      //and by checking how many skillpoints a person has
+      $has = $person->{$skill};
+
+      //check if a person has any tools
+      // if (count($person->tools) > 0) {
+      //   //if they do, go through them
+      //   for ($i = 0; $i < count($person->tools); $i++) {
+      //     //and for each skill the tool has
+      //     foreach ($person->tools[$i]->skills as $toolSkill => $value) {
+      //       //if a toolSkill matches the skill we are currently calculating
+      //       if ($toolSkill == $skill) {
+      //         //add the toolSkill points 
+      //         $has += $value;
+      //       }
+      //     }
+      //   } 
+      // }
+
+      //if a person has more points than needed, only count the points needed (to preserve our percentage)
+      //else count the skillpoints a person has
+      $sum += $has > $needed ? $needed : $has;
+      $max += $needed;
+    }
+
+    //return the percentage of skill points they have
+    return $sum/$max;
+  }
+
+  public function winChances($persons){
+    $matches = array();
+    //count is used to create a range of win intervals for all persons
+    $count = 0;
+    //calculate chance to win using howGoodAMatch()
+    foreach($persons as $person){
+      $howGoodAMatch = $this->howGoodAMatch($person);
+      //and store result in matches
+      $matches[] = array(
+        "person" => $person,
+        "howGoodAMatch" => $howGoodAMatch,
+      );
+      //increase count to create an interval
+      $count += $howGoodAMatch;
+    }
+    //also create a percentage to be nice (better to count with)
+    foreach($matches as &$match){
+      $match["winChancePercent"] = round(100*($match["howGoodAMatch"]/$count));
+    }
+    //return win chances
+    return $matches;
+  }
 
 
 }
