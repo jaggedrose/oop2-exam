@@ -33,12 +33,12 @@ class Character extends Base {
 
 	public function looseTool() {
 		if (count($this->mytools) > 0) {
-			array_splice($tool, 0, 1);    
+			array_splice($this->mytools, 0, 1);    
 		}
 	}
 
 	public function acceptChallenge($challenge, $tools) { 
-   	$new_tool = $this->winTool($tool);
+   	$new_tool = $this->winTool($tools);
    	if ($new_tool == NULL) {
    		return "Your tool bag is full";
    	}
