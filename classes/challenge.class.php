@@ -23,9 +23,9 @@ class Challenge extends Base {
   }
 
   public function get_match_points($player) {
-    //total points a player has
+    // Total points a player has
     $sum = 0;
-    //total points possible for this challenge
+    // Total points possible for this challenge
     $max = 0;
     $challenge_skills = array(
       "needlework" => $this->needlework,
@@ -33,74 +33,93 @@ class Challenge extends Base {
       "cutting" => $this->cutting,
       "patterns" => $this->patterns
     );
-    //calculate how good of a match a player is to this challenge
+    // Compare player skill points to the skill points of this challenge
     foreach ($challenge_skills as $skill => $challenge_skill_points) {
-      //and by checking how many skillpoints a player has
+      // Read the matching skill points
       $player_skill_points = $player->{$skill};
-      // check if a player has any tools
+      // Check if a player has any tools
       if (count($player->tools) > 0) {
-        //if they do, go through them
+        // Go through them if they do
         for ($i = 0; $i < count($player->tools); $i++) {
-          //and for each skill the tool has
+          // And check the skills of each tool
           foreach ($player->tools[$i]->skills as $tool_skill => $tool_skill_points) {
-            //if a toolSkill matches the skill we are currently calculating
+            // If a tools skill matches the current challenge skills
             if ($tool_skill == $skill) {
-              //add the toolSkill points 
+              // Add the tool skill points  to the players skill points
               $player_skill_points += $tool_skill_points;
             }
           }
         } 
       }
-      //if a player has more points than needed, only count the points needed (to preserve our percentage)
-      //else count the skillpoints a player has
+      // If the players skill points are higher than the challenge skill points, clamp it to the challenge skill points
+      // Otherwise, carry on!
       $sum = $player_skill_points > $challenge_skill_points ? $challenge_skill_points : $player_skill_points;
       $max = $challenge_skill_points;
     }
-    //return the percentage of skill points they have
+    // Return the percentage of skill points they have
     return $sum/$max;
   }
 
   public function win_odds($players) {
     $players_points = array();
-    //count is used to create a range of win intervals for all players
+    // Total_match_points is used to work out the win chance for each player
     $total_match_points = 0;
-    //calculate chance to win using get_match_points()
+    // Calculate the chance to win using get_match_points()
     foreach ($players as $player) {
       $get_match_points = $this->get_match_points($player);
-      //and store result in players_points
+      // Store the result in players_points
       $players_points[] = array(
         "player" => $player,
         "matchPoints" => $get_match_points,
       );
-      //increase total_match_points to create an interval
+      // Adding together the match points for all players
       $total_match_points += $get_match_points;
     }
-    //also create a percentage to be nice (better to count with)
+    // Calculate in percentage, because it's easier to work with
     foreach ($players_points as &$points) {
       $points["winOddsPercent"] = round(100*($points["matchPoints"]/$total_match_points));
     }
-    //return win odds
+    // Return winning odds
     return $players_points;
   }
    
   public function play_challenge($players) { 
     $winner_order = array();
-    //get odds to win for each player
+    // Get winning odds for each player
     $players_points = $this->win_odds($players);
-    //once again we are using intervals to check for a winner
+    // Like before, we are checking the players win chance space to see who wins, $count is where this space starts for each player
     $count = 0;
-    //pick a random number (between 0 and 100 since we are using percent)
+    // Pick a random number (between 0 and 100 since we are using percent)
     $rand = rand(0,100);
-    //then check which player interval contains the random number
+    // And check which players win chance space the random number is in
     foreach ($players_points as $points){
       if ($rand >= $count && $rand <= $points["winOddsPercent"] + $count) {
-        //if a persons interval contains the random number
-        // we have a winner, end function using return
-        return $points["player"];
+        // If a player win chance space has the random number, then that's our winner
+        // Push the winner to the winner_order array
+        $winner_order[] = $points["player"];
+        // Search for winner & remove from $players_points array
+        $the_winner = array_search($points, $players_points);
+        array_splice($players_points, $the_winner, 1);
+        break;
       }
-      //if this player was not a winner, increase interval and try again...
+      // If this player was not the winner, increase win chance and try again...
       $count += $points["winOddsPercent"];
     }
+    //  If only 1 player left, add then to the winner_order array
+    if (count($players_points) == 1) {
+      $winner_order[] = $players_points[0];
+    }
+    // Otherwise check win odds precentage for second & third place, push to array in correct order
+    else {
+      if ($players_points[0]["winOddsPercent"] >= $players_points[1]["winOddsPercent"]) {
+        $winner_order[] = $players_points[0]["player"];
+        $winner_order[] = $players_points[1]["player"];
+      }
+      else {
+        $winner_order[] = $players_points[1]["player"];
+        $winner_order[] = $players_points[0]["player"];
+      }
+    }
+    return $winner_order;
   }
 }
-

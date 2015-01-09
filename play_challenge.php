@@ -25,15 +25,15 @@ if (isset($_REQUEST["challenge_companion"])) {
 		$player->success -= 5;
 	}
 } 
-
-// Getting results from method carryOutChallenge in character.class.php
-$doing_challenge = $player->carryOutChallenge($challenge, $contestants);
+// Put all the players into an array to get the winner list
+$all_players = array($player, $contestants[0], $contestants[1]);
+$winner_list = $challenge->play_challenge($all_players);
 
 // Points after completed challenge
 // $player->success += 15;
-$player_success = $player->success;
-$contestant1_success = $contestants[0]->success;
-$contestant2_success = $contestants[1]->success;
+// $player_success = $player->success;
+// $contestant1_success = $contestants[0]->success;
+// $contestant2_success = $contestants[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
@@ -41,11 +41,12 @@ $return_data = array (
 	"contestant1Name" => &$contestant1_name,
 	"contestant2Name" => &$contestant2_name,
 	"challenge" => &$challenge,
-	"doingChallenge" =>&$doing_challenge,
-	"playerSuccess" => &$player_success,
-	"contestant1Success" => &$contestant1_success,
-	"contestant2Success" => &$contestant2_success,
-	"challengeResults" => &$challenge_results
+	"playerSuccess" => &$player->success,
+	"contestant1Success" => &$contestants[0]->success,
+	"contestant2Success" => &$contestants[1]->success,
+	"firstPlace" => &$winner_list[0]->name,
+	"secondPlace" => &$winner_list[1]->name,
+	"thirdPlace" => &$winner_list[2]->name
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));
