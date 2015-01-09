@@ -40,10 +40,10 @@ class Character extends Base {
 	public function acceptChallenge($challenge, $tools) { 
    	$new_tool = $this->winTool($tools);
    	if ($new_tool == NULL) {
-   		return "Your tool bag is full";
+   		return $challenge->title." challenge accepted! Your tool bag is full";
    	}
    	else { 
-   		return $this->name." accepts challenge: ".$challenge->title." and got ".$new_tool." tool!"; 
+   		return $challenge->title." challenge accepted! Here's a tool to help with your challenge: ".$new_tool; 
    	}
 	}
 

@@ -26,61 +26,59 @@ unset($ds->tools);
 // "Alias" variable
 $tools = &$ds->tools;
 
-$tools[] = new Tool("a Sewing needle",
+$tools[] = new Tool("A sewing needle.",
 	array(
 		"needlework" => 20
 	)
 );
 
-$tools[] = new Tool("a Thimble", 
+$tools[] = new Tool("A thimble.", 
 	array(
 		"needlework" => 30,
 	)
 );
 
-$tools[] = new Tool("Beeswax", 
+$tools[] = new Tool("Beeswax.", 
 	array(
 		"needlework" => 20,
 	)
 );
 
-$tools[] = new Tool("an Overlock", 
+$tools[] = new Tool("An overlock.", 
 	array(
 		"sewing" => 15,
 	)
 );
 
-$tools[] = new Tool("an Industrial sewing machine", 
+$tools[] = new Tool("An industrial sewing machine.", 
 	array(
 		"sewing" => 30,
 	)
 );
 
-$tools[] = new Tool("a pair of Tailors shears", 
+$tools[] = new Tool("A pair of tailors shears.", 
 	array(
 		"cutting" => 10,
 	)
 );
 
-$tools[] = new Tool("a Rotary cutter", 
+$tools[] = new Tool("A rotary cutter.", 
 	array(
 		"cutting" => 20,
 	)
 );
 
-$tools[] = new Tool("a Tape measure", 
+$tools[] = new Tool("A tape measure.", 
 	array(
 		"patterns" => 20,
 	)
 );
 
-$tools[] = New Tool("a Grading program", 
+$tools[] = New Tool("A grading program.", 
 	array(
 		"patterns" => 20,
 	)
 );
-
-
 
 // Getting string in method acceptChallenge from character.class.php
 $accepted_string = $player->acceptChallenge($challenge, $tools);

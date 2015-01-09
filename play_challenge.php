@@ -26,7 +26,7 @@ if (isset($_REQUEST["challenge_companion"])) {
 	}
 } 
 
-// Getting string in method carryOutChallenge from player.class.php
+// Getting results from method carryOutChallenge in character.class.php
 $doing_challenge = $player->carryOutChallenge($challenge, $contestants);
 // Counts the amount of times it takes to complete a challenge
 //$challenge_counter = $challenge->play_challenge($player);
