@@ -5,11 +5,12 @@ class Challenge extends Base {
 	public $id;
 	public $title;
 	public $description;
+  public $challenge;
 	public $needlework = 0;
 	public $sewing = 0;
 	public $cutting = 0;
 	public $patterns = 0;
-	public $challenge;
+  	
 
 	public function __construct($challenge) {
 		// Getting the associative array from method restart

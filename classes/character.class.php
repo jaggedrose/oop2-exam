@@ -5,19 +5,18 @@ class Character extends Base {
 	protected $name;
 	protected $craft;
 	protected $success = 50;
-
-	protected $tools = array();
-
 	protected $needlework;
 	protected $sewing;
 	protected $cutting;
 	protected $patterns;
 
+	public $tools = array();
+
 	public function __construct($name, $craft) {
     	$this->name = $name;
     	$this->craft = $craft;
 	}
-
+	
 	// Methods we will use
 	public function winTool($tool) {
 		if (count($this->tools) < 3) {
