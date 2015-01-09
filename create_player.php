@@ -29,7 +29,7 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Empty player table in DB
+// Empty player & contestants tables in DB
 unset($ds->player);
 unset($ds->contestants);
 
