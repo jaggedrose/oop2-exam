@@ -150,6 +150,7 @@ $(function() {
 		
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
+		$(".gameText").append("<p>Carrying out the challenge with a contestant will cost your 5 success points, but may increase your chances of winning the game!</p>");
 
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
 		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with contestant!</button>');

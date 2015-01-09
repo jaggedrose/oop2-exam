@@ -65,7 +65,8 @@ class Character extends Base {
 	}
 
 	public function carryOutChallengeWithCompanion() {
-
+		// creating a team consisting of two players (Teams behave as regular players)
+		$persons[] = new Team("Team1", $persons[0], $persons[1]);
 	}
 
 
