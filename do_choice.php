@@ -83,7 +83,7 @@ $tools[] = New Tool("a Grading program",
 
 
 // Getting string in method acceptChallenge from character.class.php
-$accepted_string = $player->acceptChallenge($challenge, $tool);
+$accepted_string = $player->acceptChallenge($challenge, $tools);
 
 // Cloning player & contestants success
 $player_success = $player->success;
@@ -92,6 +92,7 @@ $contestant2_success = $contestants[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array (
+	"player" => &$player,
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
 	"playerSuccess" => &$player_success,
@@ -102,7 +103,8 @@ $return_data = array (
 	"contestant2Class" => &$contestant2_craft,
 	"contestant2Success" => &$contestant2_success,
 	"challenge" => &$challenge,	
-	"acceptedString" => &$accepted_string
+	"acceptedString" => &$accepted_string,
+
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

@@ -18,12 +18,16 @@ class Character extends Base {
 	}
 	
 	// Methods we will use
-	public function winTool($tool) {
-		if (count($this->tools) < 3) {
-			$random_index = rand(0, count($tools)-1);
-			$random_tool = $tools[$random_index];
-			// push tool to players tools array
-			$this->tools[] = $random_tool;
+	public function winTool($tool) { 
+		if (count($this->tools) < 3) { 
+			$random_index = rand(0, count($tools)-1); 
+			$random_tool = $tools[$random_index]; 
+			// push tool to players tools array 
+			$this->tools[] = $random_tool; 
+			return $random_tool;
+		}
+		else {
+			return NULL;
 		}
 	}
 
@@ -33,9 +37,14 @@ class Character extends Base {
 		}
 	}
 
-	public function acceptChallenge($challenge, $tool) {
-		$this->winTool($tool);	
-		return $this->name." accepts challenge: ".$challenge->title." and got ".$tool->description." tool!";
+	public function acceptChallenge($challenge, $tool) { 
+   	$new_tool = $this->winTool($tool);
+   	if ($new_tool == NULL) {
+   		return "Your tool bag is full";
+   	}
+   	else { 
+   		return $this->name." accepts challenge: ".$challenge->title." and got ".$new_tool." tool!"; 
+   	}
 	}
 
 	public function changeChallenge() {
