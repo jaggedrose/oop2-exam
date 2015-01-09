@@ -45,7 +45,7 @@ $(function() {
 	
 	function submitHumanPlayer(chosenName, chosenClass) {
 		$.ajax({
-			url: "player_choice.php",
+			url: "create_player.php",
 			dataType: "json",
 			data: {
 				player_name : chosenName,
