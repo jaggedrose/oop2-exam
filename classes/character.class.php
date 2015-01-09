@@ -20,8 +20,10 @@ class Character extends Base {
 	// Methods we will use
 	public function winTool($tool) {
 		if (count($this->tools) < 3) {
+			$random_index = rand(0, count($tools)-1);
+			$random_tool = $tools[$random_index];
 			// push tool to players tools array
-			$this->tools[] = $tool;
+			$this->tools[] = $random_tool;
 		}
 	}
 
@@ -31,8 +33,9 @@ class Character extends Base {
 		}
 	}
 
-	public function acceptChallenge($challenge) {
-		return $this->name." accepts challenge: ".$challenge->title;
+	public function acceptChallenge($challenge, $tool) {
+		$this->winTool($tool);	
+		return $this->name." accepts challenge: ".$challenge->title." and got ".$tool->description." tool!";
 	}
 
 	public function changeChallenge() {

@@ -80,8 +80,10 @@ $tools[] = New Tool("a Grading program",
 	)
 );
 
-// Getting string in method acceptChallenge from player.class.php
-$accepted_string = $player->acceptChallenge($challenge);
+
+
+// Getting string in method acceptChallenge from character.class.php
+$accepted_string = $player->acceptChallenge($challenge, $tool);
 
 // Cloning player & contestants success
 $player_success = $player->success;
