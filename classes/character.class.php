@@ -10,7 +10,7 @@ class Character extends Base {
 	protected $cutting;
 	protected $patterns;
 
-	public $tools = array();
+	public $mytools = array();
 
 	public function __construct($name, $craft) {
     	$this->name = $name;
@@ -18,13 +18,13 @@ class Character extends Base {
 	}
 	
 	// Methods we will use
-	public function winTool($tool) { 
-		if (count($this->tools) < 3) { 
+	public function winTool($tools) { 
+		if (count($this->mytools) < 3) { 
 			$random_index = rand(0, count($tools)-1); 
 			$random_tool = $tools[$random_index]; 
 			// push tool to players tools array 
-			$this->tools[] = $random_tool; 
-			return $random_tool;
+			$this->mytools[] = $random_tool; 
+			return $random_tool->description;
 		}
 		else {
 			return NULL;
@@ -32,12 +32,12 @@ class Character extends Base {
 	}
 
 	public function looseTool() {
-		if (count($this->tools) > 0) {
+		if (count($this->mytools) > 0) {
 			array_splice($tool, 0, 1);    
 		}
 	}
 
-	public function acceptChallenge($challenge, $tool) { 
+	public function acceptChallenge($challenge, $tools) { 
    	$new_tool = $this->winTool($tool);
    	if ($new_tool == NULL) {
    		return "Your tool bag is full";
