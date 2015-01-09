@@ -74,7 +74,7 @@ $tools[] = new Tool("A tape measure.",
 	)
 );
 
-$tools[] = New Tool("A grading program.", 
+$tools[] = New Tool("A grading program", 
 	array(
 		"patterns" => 20,
 	)
@@ -83,14 +83,14 @@ $tools[] = New Tool("A grading program.",
 // Getting string in method acceptChallenge from character.class.php
 $accepted_string = $player->acceptChallenge($challenge, $tools);
 
-// Cloning player & contestants success
+// Cloning player & contestants success & my tools
 $player_success = $player->success;
 $contestant1_success = $contestants[0]->success;
 $contestant2_success = $contestants[1]->success;
+$my_tools = $player->mytools;
 
 // Collect all data needed in an associative array
 $return_data = array (
-	"player" => &$player,
 	"playerName" => &$player_name,
 	"playerClass" => &$player_class,
 	"playerSuccess" => &$player_success,
@@ -100,9 +100,9 @@ $return_data = array (
 	"contestant2Name" => &$contestant2_name,
 	"contestant2Class" => &$contestant2_craft,
 	"contestant2Success" => &$contestant2_success,
-	"challenge" => &$challenge,	
-	"acceptedString" => &$accepted_string,
-
+	"challenge" => &$challenge,
+	"myTools" => &$my_tools,	
+	"acceptedString" => &$accepted_string
 );
 // Takes array, encodes it to Json & sends it to Ajax
 echo(json_encode($return_data));

@@ -28,8 +28,7 @@ if (isset($_REQUEST["challenge_companion"])) {
 
 // Getting results from method carryOutChallenge in character.class.php
 $doing_challenge = $player->carryOutChallenge($challenge, $contestants);
-// Counts the amount of times it takes to complete a challenge
-//$challenge_counter = $challenge->play_challenge($player);
+
 // Points after completed challenge
 // $player->success += 15;
 $player_success = $player->success;
@@ -43,7 +42,6 @@ $return_data = array (
 	"contestant2Name" => &$contestant2_name,
 	"challenge" => &$challenge,
 	"doingChallenge" =>&$doing_challenge,
-	//"challengeCounter" => &$challenge_counter,
 	"playerSuccess" => &$player_success,
 	"contestant1Success" => &$contestant1_success,
 	"contestant2Success" => &$contestant2_success,
