@@ -19,23 +19,27 @@ $contestants = &$ds->contestants;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points
-if (isset($_REQUEST["challenge_companion"])) {
+if (!isset($_REQUEST["challenge_companion"])) {
+	//not enough required data was received, exit script
+  echo(json_encode(false));
+  exit();
+} 
+else {
 	$companion = $_REQUEST["challenge_companion"];
 	if($companion == "true") {
 		$myplayer->success -= 5;
+		$winner_list = $myplayer->carryOutChallengeWithCompanion($challenge, $contestants);
+		// If you don't win you lose a random tool
+		$winner_list[1]->looseTool($tools);		
 	}
-} 
-// Calling method carryOutChallenge to get results
-$winner_list = $myplayer->carryOutChallenge($challenge, $contestants);
-// Points after completed challenge when done alone, first place + 15 success points
-$winner_list[0]->success += 15;
-// Third place - 5 success points
-$winner_list[2]->success -= 5;
-// If you don't win you lose a random tool
-$lose_tool_secondplace = $winner_list[1]->looseTool();
-$lose_tool_thirdplace = $winner_list[2]->looseTool();
-// 
-
+	else {
+		// Calling method carryOutChallenge to get results
+		$winner_list = $myplayer->carryOutChallenge($challenge, $contestants);
+		// If you don't win you lose a random tool
+		$winner_list[1]->looseTool($tools);
+		$winner_list[2]->looseTool($tools);
+	}
+}
 
 // $player_success = $player->success;
 // $contestant1_success = $contestants[0]->success;

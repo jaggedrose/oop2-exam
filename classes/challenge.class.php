@@ -107,7 +107,7 @@ class Challenge extends Base {
     }
     //  If only 1 player left, add then to the winner_order array
     if (count($players_points) == 1) {
-      $winner_order[] = $players_points[0];
+      $winner_order[] = $players_points[0]["player"];
     }
     // Otherwise check win odds precentage for second & third place, push to array in correct order
     else {
