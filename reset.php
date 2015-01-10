@@ -11,8 +11,10 @@ $ds = new DBObjectSaver(array(
 ));
 
 if (isset($_REQUEST["startAgain"])) {
-  unset($ds->player);
+  unset($ds->myplayer);
   unset($ds->challenge);
+  unset($ds->contestants);
+  unset($ds->tools);
 }
 
 echo(json_encode(true));

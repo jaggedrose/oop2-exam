@@ -20,66 +20,7 @@ $contestant1_craft = $contestants[0]->craft;
 $contestant2_name = $contestants[1]->name;
 $contestant2_craft = $contestants[1]->craft;
 $challenge = &$ds->challenge[0];
-
-// Empty tools table in DB
-unset($ds->tools);
-// "Alias" variable
 $tools = &$ds->tools;
-
-$tools[] = new Tool("A sewing needle.",
-	array(
-		"needlework" => 20
-	)
-);
-
-$tools[] = new Tool("A thimble.", 
-	array(
-		"needlework" => 30,
-	)
-);
-
-$tools[] = new Tool("Beeswax.", 
-	array(
-		"needlework" => 20,
-	)
-);
-
-$tools[] = new Tool("An overlock.", 
-	array(
-		"sewing" => 15,
-	)
-);
-
-$tools[] = new Tool("An industrial sewing machine.", 
-	array(
-		"sewing" => 30,
-	)
-);
-
-$tools[] = new Tool("A pair of tailors shears.", 
-	array(
-		"cutting" => 10,
-	)
-);
-
-$tools[] = new Tool("A rotary cutter.", 
-	array(
-		"cutting" => 20,
-	)
-);
-
-$tools[] = new Tool("A tape measure.", 
-	array(
-		"patterns" => 20,
-	)
-);
-
-$tools[] = New Tool("A grading program", 
-	array(
-		"patterns" => 20,
-	)
-);
-
 // Getting string in method acceptChallenge from character.class.php
 $accepted_string = $myplayer->acceptChallenge($challenge, $tools);
 

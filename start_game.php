@@ -25,7 +25,7 @@ $contestant2_craft = $contestants[1]->craft;
 if (isset($_REQUEST["challenge_change"])) {
   $changed = $_REQUEST["challenge_change"];
   if($changed == "true") {
-    $myplayer->success -= 5;
+    $myplayer->changeChallenge();
   }
 } 
 

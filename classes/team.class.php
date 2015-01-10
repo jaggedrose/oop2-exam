@@ -30,4 +30,10 @@ class Team extends Character {
 		parent::__construct($name, "");
 	}
 
+	public function looseTool(&$tools) {
+		foreach ($this->team_members as $member) {
+			$member->looseTool($tools);
+		}
+	}
+
 }

@@ -40,7 +40,7 @@ class Character extends Base {
 		}
 	}
 
-	public function acceptChallenge($challenge, $tools) { 
+	public function acceptChallenge($challenge, &$tools) { 
    	$new_tool = $this->winTool($tools);
    	if ($new_tool == NULL) {
    		return $challenge->title." challenge accepted! Your tool bag is full";
@@ -51,28 +51,29 @@ class Character extends Base {
 	}
 
 	public function changeChallenge() {
-		return $this->name." changes challenge, loses 5 success points!";
+		$this->success -= 5;
 	}
 
 	public function carryOutChallenge($challenge, $contestants) {
 		// Put all the players into an array to get the winner list
-		$all_players = array($this, $contestants[0], $contestants[1]);
+		$my_player_array = array($this);
+		$all_players = array_merge($my_player_array, $contestants);
 		$winner_list = $challenge->play_challenge($all_players);
 
 		// Points after completed challenge when done alone, first place + 15 success points
 		$winner_list[0]->success += 15;
-		// Third place - 5 success points
-		$winner_list[2]->success -= 5;
+			// last place - 5 success points
+		$winner_list[count($winner_list)-1]->success -= 5;
 		
 		return $winner_list;
 	}
 
 	public function carryOutChallengeWithCompanion($challenge, $contestants) {
 		// Chose a random contestant to be the companion in the team
-		$random_number = rand(0, 1); 
+		$random_number = rand(0, count($contestants)-1); 
 		$companion = $contestants[$random_number];
 		// creating a team consisting of two players (Teams behave as regular players)
-		$team = new Team("Team1", $this, $companion);
+		$team = new Team("Team Sew", $this, $companion);
 		// Get remaining contestant to add to all_players array
 		$team_companion = array_search($companion, $contestants);
 		array_splice($contestants, $team_companion, 1);
@@ -86,13 +87,13 @@ class Character extends Base {
 			$team->team_members[0]->success += 9;
 			$team->team_members[1]->success += 9;
 			// Last place - 5 success points
-			$winner_list[1]->success -= 5;
+			$winner_list[count($winner_list)-1]->success -= 5;
 		}
 		else {
 			// If team loses each player loses 5 success points
-			if ($winner_list[1] === $team) {
-				$team->team_members[0]->success += 5;
-				$team->team_members[1]->success += 5;
+			if ($winner_list[count($winner_list)-1] === $team) {
+				$team->team_members[0]->success -= 5;
+				$team->team_members[1]->success -= 5;
 				// First place +15 success points
 				$winner_list[0]->success += 15;
 			}

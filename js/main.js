@@ -89,10 +89,11 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
-		
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li></ul>");
+		if (gameData["contestant2Name"] !== null) {
+			$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li></ul>");
+		}
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
 		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
@@ -141,16 +142,21 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
-		
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li></ul>");
+
+		if (gameData["contestant2Name"] !== null) {
+			$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li></ul>");
+		}
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
-		$(".gameText").append("<p>Carrying out the challenge with a contestant will cost you 5 success points, but may increase your chances of winning the game!</p>");
+		$(".gameText").append("<p>Carrying out the challenge with a contestant will cost you 5 success points, but may increase your chances of winning the game!<br> If you win as a team, you will get 9 success points each.</p>");
+		$(".gameText").append("<p>If you win a challenge alone, you get 15 success points.<br>If you lose the challenge it will cost you 5 success points & if you come in second or third you lose a tool!</p>");
 
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
-		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with contestant!</button>');
+		if (gameData["contestant2Name"] !== null) {
+			$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with contestant!</button>');
+		}
 
 		$(".doChallengeBtn").click(function() {
 			playChallenge(false);
@@ -173,17 +179,8 @@ $(function() {
 				challenge_companion : challengeCompanion
 			},
 			success: function(data) {
-				var successPoints = data["myPlayerSuccess"];
-				if (successPoints === 100) {
-					winStartGameAgain();
-				}
-				else if (successPoints === 0) {
-					lostStartGameAgain();
-				}
-				else {
-					printActiveChallenge(data);
-					console.log("Success: ", data);
-				}
+				printActiveChallenge(data);
+				console.log("Success: ", data);
 			},
 			error: function(data) {
 				console.log("Error: ", data);
@@ -198,48 +195,45 @@ $(function() {
 		// ToDo - Add challenge Id number to headline???
 		$(".gameText").append("<h4>The results of the challenge</h4>");
 
+		if (gameData["gameOver"] === true) {
+			$(".gameText").append("<p>" + gameData["returnString"] + "</p>");
 
-		
-		// $(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["myPlayerName"]] + " attempts " + gameData["myPlayerName"] + " has completed the challenge!</p>");
-		// $(".gameText").append("<p>Success: " + gameData["myPlayerSuccess"] + "</p>");
-		// $(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["contestant1Name"]] + " attempts " + gameData["contestant1Name"] + " has completed the challenge!</p>");
-		// $(".gameText").append("<p>Success: " + gameData["contestant1Success"] + "</p>");
-		// $(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["contestant2Name"]] + " attempts " + gameData["contestant2Name"] + " has completed the challenge!</p>");
-		// $(".gameText").append("<p>Success: " + gameData["contestant2Success"] + "</p>");
-		
-
-		$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');
-		
-		$(".nextChallengeBtn").click(function() {
-			playGame(false);
-			// Do not reload the page
-			return false;
-		});
-	}
-
-	function winStartGameAgain() {
-		$(".gameText").html("<h2>You have won the game!</h2>");
-		$(".gameOptions").html('<button class="startAgain">Start over!</button>');
-
-		//start over clickhandler
-		$(".startAgain").click(function() {
-			$.ajax({
-				url: "reset.php",
-				dataType: "json",
-				success: function(data) {
-				choosePlayerClass();
-				},
-				error: function(data) {
-				console.log("startOver error: ", data.responseText);
-				}
+			$(".gameOptions").html('<button class="startAgain">Start over!</button>');
+			//start over clickhandler
+			$(".startAgain").click(function() {
+				$.ajax({
+					url: "reset.php",
+					dataType: "json",
+					success: function(data) {
+					choosePlayerClass();
+					},
+					error: function(data) {
+					console.log("startOver error: ", data.responseText);
+					}
+				});
 			});
-		});
+		}
+		else {
+			$(".gameText").append("<p>" + gameData["returnString"] + "</p>");
+
+			$(".gameText").append("<p>First Place: " + gameData["firstPlace"] + "</p>");
+			$(".gameText").append("<p>Second Place: " + gameData["secondPlace"] + "</p>");
+			if (gameData["thirdPlace"] !== null) {
+				$(".gameText").append("<p>Third Place: " + gameData["thirdPlace"] + "</p>");
+			}
+			
+			$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');
+			$(".nextChallengeBtn").click(function() {
+				playGame(false);
+				// Do not reload the page
+				return false;
+			});
+		}
 	}
 
 	function lostStartGameAgain() {
 		$(".gameText").html("<h2>You have lost the game!</h2>");
 		$(".gameOptions").html('<button class="startAgain">Start over!</button>');
-
 		//start over clickhandler
 		$(".startAgain").click(function() {
 			$.ajax({
@@ -254,8 +248,6 @@ $(function() {
 			});
 		});
 	}
-
-
 
 	// Call first function needed in chain here
 	choosePlayerClass();
