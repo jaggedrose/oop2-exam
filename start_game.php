@@ -10,7 +10,7 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Get the first player from the database, &$ds->player[0];
+// Get the first player from the database, &$ds->myplayer[0];
 // we know that this is always the human player
 $myplayer = &$ds->myplayer[0];
 $myplayer_name = $myplayer->name;

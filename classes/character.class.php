@@ -3,6 +3,7 @@
 class Character extends Base {
 
 	protected $name;
+	// $craft is my sneaky way of getting the class of each player, the way I want
 	protected $craft;
 	protected $success = 50;
 	protected $needlework;
