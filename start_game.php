@@ -12,9 +12,9 @@ $ds = new DBObjectSaver(array(
 
 // Get the first player from the database, &$ds->player[0];
 // we know that this is always the human player
-$player = &$ds->player[0];
-$player_name = $player->name;
-$player_class = $player->craft;
+$myplayer = &$ds->myplayer[0];
+$myplayer_name = $myplayer->name;
+$myplayer_class = $myplayer->craft;
 $contestants = &$ds->contestants;
 $contestant1_name = $contestants[0]->name;
 $contestant1_craft = $contestants[0]->craft;
@@ -25,7 +25,7 @@ $contestant2_craft = $contestants[1]->craft;
 if (isset($_REQUEST["challenge_change"])) {
   $changed = $_REQUEST["challenge_change"];
   if($changed == "true") {
-    $player->success -= 5;
+    $myplayer->success -= 5;
   }
 } 
 
@@ -63,15 +63,15 @@ $new_challenge = new Challenge($challenge);
 $current_challenge[] = $new_challenge;
 
 // Cloning player & contestants success
-$player_success = $player->success;
+$myplayer_success = $myplayer->success;
 $contestant1_success = $contestants[0]->success;
 $contestant2_success = $contestants[1]->success;
 
 // Collect all data needed in an associative array
 $return_data = array(
-	"playerName" => &$player_name,
-	"playerClass" => &$player_class,
-  "playerSuccess" => &$player_success,
+	"myPlayerName" => &$myplayer_name,
+	"myPlayerClass" => &$myplayer_class,
+  "myPlayerSuccess" => &$myplayer_success,
 	"challenge" => &$challenge,
   "contestant1Name" => &$contestant1_name,
   "contestant1Class" => &$contestant1_craft,

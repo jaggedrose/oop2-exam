@@ -9,12 +9,9 @@ $(function() {
 		$(".gameText").append("<h2>Create your player!</h2>");
 		// Player name input
 		$(".gameOptions").append("<h3>Player Name:</h3>");
-		$(".gameOptions").append('<input id="playerName" name="playerName" type="text" placeholder="Enter your name">');
+		$(".gameOptions").append('<input id="myPlayerName" name="myPlayerName" type="text" placeholder="Enter your name">');
 
-		// ToDo - Might need this later.......
-		//find out available characters for chosen storyline
-		// var availableCharacters = storyData.available_characters;
-
+		
 		$(".gameOptions").append("<h3>Choose a class for your player:</h3>");
 		// Player classes as radio buttons
 		$(".gameOptions").append('<input type="radio" name="playerClass" id="dressmakerClass" value="Dressmaker"><label for="Dressmaker">Dressmaker</label><br>');
@@ -26,7 +23,7 @@ $(function() {
 
 		// clickhandler for start new game button
 		$(".startGame").click(function() {
-			var pName = $("#playerName").val();
+			var pName = $("#myPlayerName").val();
 			// ToDo - Add alert msg that name must be entered!
 			var pClass;
 			if ($("input[name='playerClass']:checked").length > 0 && pName.length > 0){
@@ -48,7 +45,7 @@ $(function() {
 			url: "create_player.php",
 			dataType: "json",
 			data: {
-				player_name : chosenName,
+				myplayer_name : chosenName,
 				player_class : chosenClass
 			},
 			success: function(data) {
@@ -70,7 +67,7 @@ $(function() {
 			},
 			success: function(data) {
 				// Above (data) is the associative array $return_data echoed from PHP
-				var successPoints = data["playerSuccess"];
+				var successPoints = data["myPlayerSuccess"];
 				if (successPoints === 0) {
 					lostStartGameAgain();
 				}
@@ -92,7 +89,7 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
 		
@@ -144,13 +141,13 @@ $(function() {
 		$(".gameOptions").html('');
 
 		$(".gameText").append("<h3>Player Info!</h3>");
-		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["playerName"] + " </li><li><strong>Success points:</strong> " + gameData["playerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["playerClass"] + "</li></ul>");
+		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["myPlayerName"] + " </li><li><strong>Success points:</strong> " + gameData["myPlayerSuccess"] + " </li><li><strong>Class:</strong> " + gameData["myPlayerClass"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant1Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant1Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant1Class"] + "</li></ul>");
 		$(".gameText").append("<ul><li><strong>Name:</strong> " + gameData["contestant2Name"] + " </li><li><strong>Success points:</strong> " + gameData["contestant2Success"] + " </li><li><strong>Class:</strong> " + gameData["contestant2Class"] + "</li></ul>");
 		
 
 		$(".gameText").append("<h4>" + gameData["acceptedString"] + "</h4>");
-		$(".gameText").append("<p>Carrying out the challenge with a contestant will cost your 5 success points, but may increase your chances of winning the game!</p>");
+		$(".gameText").append("<p>Carrying out the challenge with a contestant will cost you 5 success points, but may increase your chances of winning the game!</p>");
 
 		$(".gameOptions").append('<button class="doChallengeBtn">Carry out challenge!</button>');
 		$(".gameOptions").append('<button class="companionChallengeBtn">Carry out challenge with contestant!</button>');
@@ -176,7 +173,7 @@ $(function() {
 				challenge_companion : challengeCompanion
 			},
 			success: function(data) {
-				var successPoints = data["playerSuccess"];
+				var successPoints = data["myPlayerSuccess"];
 				if (successPoints === 100) {
 					winStartGameAgain();
 				}
@@ -203,8 +200,8 @@ $(function() {
 
 
 		
-		$(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["playerName"]] + " attempts " + gameData["playerName"] + " has completed the challenge!</p>");
-		$(".gameText").append("<p>Success: " + gameData["playerSuccess"] + "</p>");
+		$(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["myPlayerName"]] + " attempts " + gameData["myPlayerName"] + " has completed the challenge!</p>");
+		$(".gameText").append("<p>Success: " + gameData["myPlayerSuccess"] + "</p>");
 		$(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["contestant1Name"]] + " attempts " + gameData["contestant1Name"] + " has completed the challenge!</p>");
 		$(".gameText").append("<p>Success: " + gameData["contestant1Success"] + "</p>");
 		$(".gameText").append("<p>After " + gameData["doingChallenge"][gameData["contestant2Name"]] + " attempts " + gameData["contestant2Name"] + " has completed the challenge!</p>");

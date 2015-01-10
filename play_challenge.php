@@ -11,8 +11,8 @@ $ds = new DBObjectSaver(array(
 ));
 
 // Get player & challenge from DB
-$player = &$ds->player[0];
-$player_name = $player->name;
+$myplayer = &$ds->myplayer[0];
+$myplayer_name = $myplayer->name;
 $contestants = &$ds->contestants;
 $contestant1_name = &$ds->contestants[0]->name;
 $contestant2_name = &$ds->contestants[1]->name;
@@ -22,11 +22,11 @@ $challenge = &$ds->challenge[0];
 if (isset($_REQUEST["challenge_companion"])) {
 	$companion = $_REQUEST["challenge_companion"];
 	if($companion == "true") {
-		$player->success -= 5;
+		$myplayer->success -= 5;
 	}
 } 
 // Put all the players into an array to get the winner list
-$all_players = array($player, $contestants[0], $contestants[1]);
+$all_players = array($myplayer, $contestants[0], $contestants[1]);
 $winner_list = $challenge->play_challenge($all_players);
 
 // Points after completed challenge
@@ -37,11 +37,11 @@ $winner_list = $challenge->play_challenge($all_players);
 
 // Collect all data needed in an associative array
 $return_data = array (
-	"playerName" => &$player_name,
+	"myPlayerName" => &$myplayer_name,
 	"contestant1Name" => &$contestant1_name,
 	"contestant2Name" => &$contestant2_name,
 	"challenge" => &$challenge,
-	"playerSuccess" => &$player->success,
+	"myPlayerSuccess" => &$myplayer->success,
 	"contestant1Success" => &$contestants[0]->success,
 	"contestant2Success" => &$contestants[1]->success,
 	"firstPlace" => &$winner_list[0]->name,

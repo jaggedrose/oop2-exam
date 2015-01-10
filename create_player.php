@@ -7,9 +7,9 @@
 //  },
 
 // Make sure the ajax is sending the required data
-if (isset($_REQUEST["player_name"]) && isset($_REQUEST["player_class"])) {
+if (isset($_REQUEST["myplayer_name"]) && isset($_REQUEST["player_class"])) {
   //store data in variables
-  $player_name = $_REQUEST["player_name"];
+  $myplayer_name = $_REQUEST["myplayer_name"];
   $player_class = $_REQUEST["player_class"];
 } 
 else {
@@ -30,18 +30,18 @@ $ds = new DBObjectSaver(array(
 ));
 
 // Empty player & contestants tables in DB
-unset($ds->player);
+unset($ds->myplayer);
 unset($ds->contestants);
 
 // "Alias" variable 
-$player = &$ds->player;
+$myplayer = &$ds->myplayer;
 $contestants = &$ds->contestants;
 
 // Create new player instance
-$new_player = new $player_class($player_name, $player_class);
+$new_player = new $player_class($myplayer_name, $player_class);
 
 //start tracking player instance
-$player[] = $new_player;
+$myplayer[] = $new_player;
 
 //Make 2 computer players
 $classes = array("Dressmaker", "Tailor", "Patternmaker"); 
@@ -52,19 +52,4 @@ array_splice($classes, $used_class_index, 1);
 $contestants[] = new $classes[0]("Coco", $classes[0]);
 $contestants[] = new $classes[1]("Christian", $classes[1]);
 
-// $return_data = array (
-//   "newPlayer" => &$new_player,
-//   "contestants" => array(
-//       array(
-//         "contestant1Name" => &$contestants[0]->name,
-//         "contestant1Class" => &$contestants[0]->craft
-//       ),
-//       array(
-//         "contestant2Name" => &$contestants[1]->name,
-//         "contestant2Class" => &$contestants[1]->craft
-//       ),
-//     ),
-// );
-
-// ToDo - used for checking console.log, change to echo(json_encode(true));
 echo(json_encode(true));

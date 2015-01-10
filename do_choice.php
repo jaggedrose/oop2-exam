@@ -11,9 +11,9 @@ $ds = new DBObjectSaver(array(
 ));
 
 // Get player & challenge from DB
-$player = &$ds->player[0];
-$player_name = $player->name;
-$player_class = $player->craft;
+$myplayer = &$ds->myplayer[0];
+$myplayer_name = $myplayer->name;
+$myplayer_class = $myplayer->craft;
 $contestants = &$ds->contestants;
 $contestant1_name = $contestants[0]->name;
 $contestant1_craft = $contestants[0]->craft;
@@ -81,19 +81,19 @@ $tools[] = New Tool("A grading program",
 );
 
 // Getting string in method acceptChallenge from character.class.php
-$accepted_string = $player->acceptChallenge($challenge, $tools);
+$accepted_string = $myplayer->acceptChallenge($challenge, $tools);
 
 // Cloning player & contestants success & my tools
-$player_success = $player->success;
+$myplayer_success = $myplayer->success;
 $contestant1_success = $contestants[0]->success;
 $contestant2_success = $contestants[1]->success;
-$my_tools = $player->mytools;
+$my_tools = $myplayer->mytools;
 
 // Collect all data needed in an associative array
 $return_data = array (
-	"playerName" => &$player_name,
-	"playerClass" => &$player_class,
-	"playerSuccess" => &$player_success,
+	"myPlayerName" => &$myplayer_name,
+	"myPlayerClass" => &$myplayer_class,
+	"myPlayerSuccess" => &$myplayer_success,
 	"contestant1Name" => &$contestant1_name,
 	"contestant1Class" => &$contestant1_craft,
 	"contestant1Success" => &$contestant1_success,
