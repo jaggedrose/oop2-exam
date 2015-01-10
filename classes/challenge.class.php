@@ -38,11 +38,11 @@ class Challenge extends Base {
       // Read the matching skill points
       $player_skill_points = $player->{$skill};
       // Check if a player has any tools
-      if (count($player->tools) > 0) {
+      if (count($player->mytools) > 0) {
         // Go through them if they do
-        for ($i = 0; $i < count($player->tools); $i++) {
+        for ($i = 0; $i < count($player->mytools); $i++) {
           // And check the skills of each tool
-          foreach ($player->tools[$i]->skills as $tool_skill => $tool_skill_points) {
+          foreach ($player->mytools[$i]->skills as $tool_skill => $tool_skill_points) {
             // If a tools skill matches the current challenge skills
             if ($tool_skill == $skill) {
               // Add the tool skill points  to the players skill points
@@ -53,8 +53,8 @@ class Challenge extends Base {
       }
       // If the players skill points are higher than the challenge skill points, clamp it to the challenge skill points
       // Otherwise, carry on!
-      $sum = $player_skill_points > $challenge_skill_points ? $challenge_skill_points : $player_skill_points;
-      $max = $challenge_skill_points;
+      $sum += $player_skill_points > $challenge_skill_points ? $challenge_skill_points : $player_skill_points;
+      $max += $challenge_skill_points;
     }
     // Return the percentage of skill points they have
     return $sum/$max;

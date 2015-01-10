@@ -53,21 +53,21 @@ class Character extends Base {
 	}
 
 	public function carryOutChallenge($challenge, $contestants) {
-		$results = array();
-		// Getting each players result from the challenge
-		$results[$this->name] = $challenge->play_challenge($this);
-		$results[$contestants[0]->name] = $challenge->play_challenge($contestants[0]);
-		$results[$contestants[1]->name] = $challenge->play_challenge($contestants[1]);
-		// Sorting by number of attempts it takes to complete the challenge
-		asort($results, SORT_NUMERIC);
-		// ToDo - Add points to player that completed challenge first & minus points to last player
+		// Put all the players into an array to get the winner list
+		$all_players = array($this, $contestants[0], $contestants[1]);
+		$winner_list = $challenge->play_challenge($all_players);
 
-		return $results;
+		return $winner_list;
 	}
 
-	public function carryOutChallengeWithCompanion() {
+	public function carryOutChallengeWithCompanion($challenge, $companion, $contestant) {
 		// creating a team consisting of two players (Teams behave as regular players)
-		$persons[] = new Team("Team1", $persons[0], $persons[1]);
+		$team = new Team("Team1", $this, $companion);
+		// Put all the players into an array to get the winner list
+		$all_players = array($team, $contestant);
+		$winner_list = $challenge->play_challenge($all_players);
+
+		return $winner_list;
 	}
 
 
