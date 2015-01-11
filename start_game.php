@@ -11,7 +11,7 @@ $ds = new DBObjectSaver(array(
 ));
 
 // Get the first player from the database, &$ds->myplayer[0];
-// we know that this is always the human player
+// We know that this is always the human player
 $myplayer = &$ds->myplayer[0];
 $myplayer_name = $myplayer->name;
 $myplayer_class = $myplayer->craft;
@@ -33,16 +33,16 @@ $random_challenge_nr = rand(0, 9);
 
 $challenge_json_path = "./data/challenge" . $random_challenge_nr . ".json";
 
-//try to get the challenge json
+// Get the challenge json
 $challenge_data = file_get_contents($challenge_json_path);
 
-//if we did not find our story file, exit script
+// If we did not find our challenge file, exit script
 if (!$challenge_data) {
   echo("Challenge json not found! ".$game_data_path);
   exit();
 }
 
-//json_decode($json_data, true) turns json into associative arrays
+// json_decode($json_data, true) turns json into associative arrays
 $challenge = json_decode($challenge_data, true);
 
 if(!$challenge) {

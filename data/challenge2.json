@@ -1,7 +1,7 @@
 {
   "id" : 2,
   "title" : "Hand stitch the hem of a kilt",
-  "description" : "You have a kilt that needs it's hem hand stitched",
+  "description" : "You have a kilt that needs it's hem hand stitched.",
   "skills" : {
 		"needlework" : 100,
 		"sewing" : 0,

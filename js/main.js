@@ -10,7 +10,6 @@ $(function() {
 		// Player name input
 		$(".gameOptions").append("<h3>Player Name:</h3>");
 		$(".gameOptions").append('<input id="myPlayerName" name="myPlayerName" type="text" placeholder="Enter your name">');
-
 		
 		$(".gameOptions").append("<h3>Choose a class for your player:</h3>");
 		// Player classes as radio buttons
@@ -24,7 +23,7 @@ $(function() {
 		// clickhandler for start new game button
 		$(".startGame").click(function() {
 			var pName = $("#myPlayerName").val();
-			// ToDo - Add alert msg that name must be entered!
+			// ToDo - Add css msg that name must be entered!
 			var pClass;
 			if ($("input[name='playerClass']:checked").length > 0 && pName.length > 0){
 				pClass = $('input:radio[name=playerClass]:checked').val();
@@ -84,7 +83,6 @@ $(function() {
 
 	function printChallengeData(gameData) {
 		// gameData is the same data from playGame success, just with a new name
-		// ToDo - Add if else for game data, if false start new game, elseif empty array game completed, restart.
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
@@ -96,7 +94,7 @@ $(function() {
 		}
 
 		$(".gameText").append("<h2>Your Challenge!</h2>");
-		$(".gameText").append("<h2>" + gameData["challenge"]["title"] + "</h2>");
+		$(".gameText").append("<h3>" + gameData["challenge"]["title"] + "</h3>");
 		$(".gameText").append("<p>"+gameData["challenge"]["description"] +"</p>");
 
 		$(".gameText").append("<h4>Skill levels for challenge:</h4>");
@@ -137,7 +135,7 @@ $(function() {
 	}
 
 	function challengeAccepted(gameData) {
-		// gameData is the same data from playGame success, just with a new name (it is the $return_data info)
+		// gameData is the same data as playGame success, just with a new name (it is the $return_data info)
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
@@ -192,8 +190,7 @@ $(function() {
 		$(".gameText").html('');
 		$(".gameOptions").html('');
 
-		// ToDo - Add challenge Id number to headline???
-		$(".gameText").append("<h4>The results of the challenge</h4>");
+		$(".gameText").append("<h3>The results of the challenge...</h3>");
 
 		if (gameData["gameOver"] === true) {
 			$(".gameText").append("<p>" + gameData["returnString"] + "</p>");
@@ -216,10 +213,10 @@ $(function() {
 		else {
 			$(".gameText").append("<p>" + gameData["returnString"] + "</p>");
 
-			$(".gameText").append("<p>First Place: " + gameData["firstPlace"] + "</p>");
-			$(".gameText").append("<p>Second Place: " + gameData["secondPlace"] + "</p>");
+			$(".gameText").append("<p><strong>First Place:</strong> " + gameData["firstPlace"] + "</p>");
+			$(".gameText").append("<p><strong>Second Place:</strong> " + gameData["secondPlace"] + "</p>");
 			if (gameData["thirdPlace"] !== null) {
-				$(".gameText").append("<p>Third Place: " + gameData["thirdPlace"] + "</p>");
+				$(".gameText").append("<strong><p>Third Place:</strong> " + gameData["thirdPlace"] + "</p>");
 			}
 			
 			$(".gameOptions").append('<button class="nextChallengeBtn">Play next challenge!</button>');

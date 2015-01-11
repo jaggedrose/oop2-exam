@@ -1,7 +1,7 @@
 {
   "id" : 3,
   "title" : "Make a hat",
-  "description" : "Make a hat & decorate it.",
+  "description" : "Make a hat & decorations to adorn it with.",
   "skills" : {		
 		"needlework" : 100,
 		"sewing" : 0,

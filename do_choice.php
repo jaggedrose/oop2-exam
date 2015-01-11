@@ -10,7 +10,7 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Get player & challenge from DB
+// Get needed info from DB
 $myplayer = &$ds->myplayer[0];
 $myplayer_name = $myplayer->name;
 $myplayer_class = $myplayer->craft;
@@ -21,10 +21,11 @@ $contestant2_name = $contestants[1]->name;
 $contestant2_craft = $contestants[1]->craft;
 $challenge = &$ds->challenge[0];
 $tools = &$ds->tools;
+
 // Getting string in method acceptChallenge from character.class.php
 $accepted_string = $myplayer->acceptChallenge($challenge, $tools);
 
-// Cloning player & contestants success & my tools
+// Cloning my player & contestants success & my tools
 $myplayer_success = $myplayer->success;
 $contestant1_success = $contestants[0]->success;
 $contestant2_success = $contestants[1]->success;

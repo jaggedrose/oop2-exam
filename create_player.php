@@ -2,18 +2,18 @@
 
 // JSON data example from main.js
 //  data: {
-//    player_name : chosenName,
+//    myplayer_name : chosenName,
 // 		player_class : chosenClass
 //  },
 
 // Make sure the ajax is sending the required data
 if (isset($_REQUEST["myplayer_name"]) && isset($_REQUEST["player_class"])) {
-  //store data in variables
+  // Store data in variables
   $myplayer_name = $_REQUEST["myplayer_name"];
   $player_class = $_REQUEST["player_class"];
 } 
 else {
-  //not enough required data was received, exit script
+  // Not enough required data was received, exit script
   echo(json_encode(false));
   exit();
 }
@@ -29,14 +29,16 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Empty player & contestants tables in DB
+// Empty tables in DB
 unset($ds->myplayer);
 unset($ds->contestants);
-// Empty tools table in DB
 unset($ds->tools);
 // "Alias" variable
+$myplayer = &$ds->myplayer;
+$contestants = &$ds->contestants;
 $tools = &$ds->tools;
 
+// Create new tools
 $tools[] = new Tool("A sewing needle.",
   array(
     "needlework" => 20
@@ -91,17 +93,13 @@ $tools[] = New Tool("A grading program",
   )
 );
 
-// "Alias" variable 
-$myplayer = &$ds->myplayer;
-$contestants = &$ds->contestants;
-
 // Create new player instance
 $new_player = new $player_class($myplayer_name, $player_class);
 
-//start tracking player instance
+// Start tracking player instance
 $myplayer[] = $new_player;
 
-//Make 2 computer players
+// Make 2 computer players (contestants)
 $classes = array("Dressmaker", "Tailor", "Patternmaker"); 
 
 $used_class_index = array_search($player_class, $classes);

@@ -10,17 +10,14 @@ $ds = new DBObjectSaver(array(
   "prefix" => "exam_game"
 ));
 
-// Get player & challenge from DB
+// Get needed info from DB
 $myplayer = &$ds->myplayer[0];
-// $myplayer_name = $myplayer->name;
 $contestants = &$ds->contestants;
-// $contestant1_name = &$ds->contestants[0]->name;
-// $contestant2_name = &$ds->contestants[1]->name;
 $challenge = &$ds->challenge[0];
 
 // Checking if challenge is played with companion, if so minus 5 success points
 if (!isset($_REQUEST["challenge_companion"])) {
-	//not enough required data was received, exit script
+	// Not enough required data was received, exit script
   echo(json_encode(false));
   exit();
 } 
@@ -39,7 +36,7 @@ else {
 		$winner_list[$i]->looseTool($tools);
 	}
 }
-
+// Success points logic
 $my_player_array = array($myplayer);
 $all_players = array_merge($my_player_array, $contestants);
 
@@ -70,7 +67,7 @@ for ($i = 0; $i < count($all_players); $i++) {
 	}
 }
 
-if(count($contestants) <= 0) {
+if (count($contestants) <= 0) {
 	$return_string = "You have no one else to challenge. Game Over!";
 	$game_over = true;
 }

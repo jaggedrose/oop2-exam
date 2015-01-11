@@ -23,7 +23,7 @@ class Character extends Base {
 		if (count($this->mytools) < 3) { 
 			$random_number = rand(0, count($tools)-1); 
 			$random_tool = $tools[$random_number]; 
-			// push tool to players tools array 
+			// Push tool to players tools array 
 			$this->mytools[] = $random_tool; 
 			array_splice($tools, $random_number, 1);
 			return $random_tool->description;
@@ -59,20 +59,19 @@ class Character extends Base {
 		$my_player_array = array($this);
 		$all_players = array_merge($my_player_array, $contestants);
 		$winner_list = $challenge->play_challenge($all_players);
-
-		// Points after completed challenge when done alone, first place + 15 success points
+		// Points after completed challenge when done alone, first place +15 success points
 		$winner_list[0]->success += 15;
-			// last place - 5 success points
+			// Last place -5 success points
 		$winner_list[count($winner_list)-1]->success -= 5;
 		
 		return $winner_list;
 	}
 
 	public function carryOutChallengeWithCompanion($challenge, $contestants) {
-		// Chose a random contestant to be the companion in the team
+		// Choose a random contestant to be the companion in the team
 		$random_number = rand(0, count($contestants)-1); 
 		$companion = $contestants[$random_number];
-		// creating a team consisting of two players (Teams behave as regular players)
+		// Creating a team consisting of two players (Teams behave as regular players)
 		$team = new Team("Team Sew", $this, $companion);
 		// Get remaining contestant to add to all_players array
 		$team_companion = array_search($companion, $contestants);
@@ -80,13 +79,12 @@ class Character extends Base {
 
 		// Put all the players into an array to get the winner list
 		$all_players = array($team, $contestants[0]);
-
 		$winner_list = $challenge->play_challenge($all_players);
 		// If the team wins each player gets +9 success points
 		if ($winner_list[0] === $team) {
 			$team->team_members[0]->success += 9;
 			$team->team_members[1]->success += 9;
-			// Last place - 5 success points
+			// Last place -5 success points
 			$winner_list[count($winner_list)-1]->success -= 5;
 		}
 		else {
@@ -132,7 +130,7 @@ class Character extends Base {
 	}
 
 	public function set_success($val) {
-		// Limiting the success points to 0 - 100
+		// Limiting (clamping) the success points to 0 - 100
 		if ($val < 0) {
 			$val = 0;
 		}
